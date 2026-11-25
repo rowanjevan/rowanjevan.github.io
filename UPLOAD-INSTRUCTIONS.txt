@@ -1,0 +1,7 @@
+LATEST WEBSITE, VERSION 14
+
+Unzip and upload ALL CONTENTS into your existing GitHub repository root. Keep the assets folder intact. Replace matching files. Do not upload the ZIP itself or its outer folder.
+
+This copy includes the chosen Understanding the business slogan, illustrative research scatterplot, navy achievements and simulation controls, simplified Contact, and no Projects subtitle.
+
+Versioned stylesheet/script links refresh previously cached website files.
