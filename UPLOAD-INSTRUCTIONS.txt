@@ -1,7 +1,10 @@
-LATEST WEBSITE, VERSION 14
+Rowan Jevan portfolio v24, November 25, 2026
 
-Unzip and upload ALL CONTENTS into your existing GitHub repository root. Keep the assets folder intact. Replace matching files. Do not upload the ZIP itself or its outer folder.
+Includes the new slogan and responsive desktop, laptop and phone layouts.
 
-This copy includes the chosen Understanding the business slogan, illustrative research scatterplot, navy achievements and simulation controls, simplified Contact, and no Projects subtitle.
+1. Unzip this file.
+2. Upload all extracted website files and the assets folder to the root of rowanjevan.github.io, replacing the matching files. Include the new responsive.css file.
+3. Commit the changes and wait for GitHub Pages to deploy.
+4. Refresh the website after deployment.
 
-Versioned stylesheet/script links refresh previously cached website files.
+Do not upload the ZIP itself or an extra enclosing folder. This is the frontend only. Your Render backend remains connected and does not need to be replaced.
