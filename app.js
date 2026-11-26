@@ -12,7 +12,7 @@ function journey(){return `<section class="journey" aria-labelledby="journey-tit
  <li><div class="journey-meta"><span>2008</span><span>Birth</span></div><div class="journey-body"><h3>Shanghai</h3><h4>Lujiazui (陆家嘴)</h4><p>My story began in Shanghai during the 2008 crisis, in a city that was regaining momentum by mid-2009.</p></div></li>
  <li><div class="journey-meta"><span>Jul 2023</span><span>Age 15</span></div><div class="journey-body"><h3>New York</h3><h4>Columbia University</h4><p>My interest in computer science took shape here, exploring how data and machine learning solve real-world problems.</p></div></li>
  <li><div class="journey-meta"><span>Jun–Aug 2024</span><span>Age 16</span></div><div class="journey-body"><h3>Cambridge</h3><h4>Harvard University</h4><p>Followed that curiosity deeper into computer science, building my foundation in data structures and discrete math.</p></div></li>
- <li><div class="journey-meta"><span>2024–2026</span><span>Ages 16–18</span></div><div class="journey-body"><h3>Los Angeles</h3><h4>Valuation · Software M&A · Search Fund</h4><p>Stepped into finance through three internships, researching businesses and evaluating acquisition opportunities.</p></div></li>
+ <li><div class="journey-meta"><span>2024–2026</span><span>Ages 16–18</span></div><div class="journey-body"><h3>Los Angeles</h3><h4>Wakefield → Dotmatics → Minerva</h4><p>Stepped into finance through three internships, researching businesses and evaluating acquisition opportunities.</p></div></li>
  </ol></section>`;}
 function about(){return `<div class="about-page page-enter">
  <div class="personal-column">

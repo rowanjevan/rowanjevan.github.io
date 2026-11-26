@@ -52,7 +52,8 @@ let cleanup=()=>{};
 function dispose(){cleanup();cleanup=()=>{};}
 async function mount(){
  dispose();const host=document.getElementById('sim-chart');if(!host)return;
- let alive=true,paths=[],stats=[],data,params,drawInfo,days,run=0,busy=false;
+ let alive=true,paths=[],stats=[],data,params,drawInfo,days,run=0,busy=false,revealStarted=null;
+ const revealDuration=1800;
  const abort=new AbortController();let observer,lookupAbort,lookupSerial=0;
  const money=x=>(data?.currency&&data.currency!=='USD'?data.currency+' ':'$')+x.toFixed(2);
  cleanup=()=>{alive=false;abort.abort();lookupAbort?.abort();observer?.disconnect();};
@@ -69,18 +70,21 @@ async function mount(){
  let values=[params.initial];for(const path of paths)values.push(...path);if(show)values.push(...data.actual.map(r=>r.close));let lo=Math.min(...values),hi=Math.max(...values);const pad=Math.max(3,(hi-lo)*.08);lo-=pad;hi+=pad;
  const x=i=>left+i/days*(W-left-right),y=v=>top+(hi-v)/(hi-lo)*(H-top-bottom);drawInfo={x};
  const pathD=a=>a.map((v,i)=>(i?'L':'M')+x(i).toFixed(2)+','+y(v).toFixed(2)).join(' ');
- let grid='';for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4,yy=y(v);grid+=`<path d="M${left} ${yy}H${W-right}" stroke="#e1e8e1"/><text x="${left-9}" y="${yy+4}" text-anchor="end">${data.currency&&data.currency!=='USD'?data.currency+' ':'$'}${v.toFixed(0)}</text>`;}
+ let grid='';for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4,yy=y(v);grid+=`<path d="M${left} ${yy}H${W-right}" stroke="#e5e5e5"/><text x="${left-9}" y="${yy+4}" text-anchor="end">${data.currency&&data.currency!=='USD'?data.currency+' ':'$'}${v.toFixed(0)}</text>`;}
  for(const i of (W<500?[0,Math.round(days/2),days]:[0,Math.round(days/4),Math.round(days/2),Math.round(days*3/4),days]))grid+=`<text x="${x(i)}" y="${H-12}" text-anchor="${i===0?'start':i===days?'end':'middle'}">${labelAt(i)}</text>`;
- const lines=paths.map((p,i)=>`<path d="${pathD(p)}" fill="none" stroke="${['#397f69','#5487ac','#727aaf','#678c65'][i%4]}" stroke-width="1.3" opacity=".48"/>`).join('');
- const med=stats.length?`<path d="${pathD(stats.map(s=>s.median))}" fill="none" stroke="#a75b13" stroke-width="2.8" stroke-dasharray="7 4"/>`:'';
- const actual=show?`<path d="${pathD(data.actual.map(r=>r.close))}" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><path d="${pathD(data.actual.map(r=>r.close))}" fill="none" stroke="#101b25" stroke-width="3.5" stroke-linejoin="round"/><circle cx="${x(days)}" cy="${y(data.actual[days].close)}" r="4" fill="#101b25"/>`:'';
- host.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${data.ticker} ${data.custom?'one-year simulation from uploaded history':'historical comparison, '+data.actual[0].date+' to '+data.actual.at(-1).date}. ${paths.length} simulated paths; ${show?'bold actual price line shown':'actual price hidden'}. Use the trading-day slider below for exact values."><g class="sim-grid">${grid}</g><g class="sim-traces">${lines}${med}${actual}</g><line id="sim-crosshair" x1="${x(Number(el('sim-day').value))}" x2="${x(Number(el('sim-day').value))}" y1="${top}" y2="${H-bottom}" stroke="#82948a" stroke-dasharray="3 5" opacity=".5"/></svg>`;
+ const lines=paths.map(p=>`<path d="${pathD(p)}" fill="none" stroke="#000000" stroke-width="1.3" opacity=".48"/>`).join('');
+ const med=stats.length?`<path d="${pathD(stats.map(s=>s.median))}" fill="none" stroke="#fff" stroke-width="5.5" stroke-dasharray="7 4"/><path d="${pathD(stats.map(s=>s.median))}" fill="none" stroke="#000000" stroke-width="2.8" stroke-dasharray="7 4"/>`:'';
+ const actual=show?`<path d="${pathD(data.actual.map(r=>r.close))}" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><path d="${pathD(data.actual.map(r=>r.close))}" fill="none" stroke="#000000" stroke-width="3.5" stroke-linejoin="round"/><circle cx="${x(days)}" cy="${y(data.actual[days].close)}" r="4" fill="#000000"/>`:'';
+ const revealElapsed=revealStarted===null?revealDuration:performance.now()-revealStarted;
+ const animateReveal=paths.length>0&&revealElapsed<revealDuration&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const revealMask=animateReveal?`<defs><clipPath id="sim-path-reveal" clipPathUnits="userSpaceOnUse"><rect class="sim-reveal-window" x="0" y="0" width="${W}" height="${H}" style="animation-duration:${revealDuration}ms;animation-delay:-${Math.max(0,revealElapsed)}ms"/></clipPath></defs>`:'';
+ host.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${data.ticker} ${data.custom?'one-year simulation from uploaded history':'historical comparison, '+data.actual[0].date+' to '+data.actual.at(-1).date}. ${paths.length} simulated paths; ${show?'bold actual price line shown':'actual price hidden'}. Use the trading-day slider below for exact values.">${revealMask}<g class="sim-grid">${grid}</g><g class="sim-traces"${animateReveal?' clip-path="url(#sim-path-reveal)"':''}>${lines}${med}${actual}</g><line id="sim-crosshair" x1="${x(Number(el('sim-day').value))}" x2="${x(Number(el('sim-day').value))}" y1="${top}" y2="${H-bottom}" stroke="#888888" stroke-dasharray="3 5" opacity=".5"/></svg>`;
  const svg=host.querySelector('svg');svg.addEventListener('pointermove',e=>{const box=svg.getBoundingClientRect();const px=(e.clientX-box.left)*W/box.width;el('sim-day').value=Math.max(0,Math.min(days,Math.round((px-left)/(W-left-right)*days)));inspection();});inspection();
  }
  function summary(){const last=data.actual.at(-1);el('sim-summary').innerHTML=`<div><span>${data.custom?'Starting Price':'Actual Final Close'}</span><strong>${data.custom?money(params.initial):el('sim-actual').checked?money(last.close):'Hidden'}</strong><small>${data.custom?'Last uploaded closing price':el('sim-actual').checked?pct(last.close/params.initial-1)+' over one year':'Enable the actual-price overlay'}</small></div><div><span>Simulated Median</span><strong>${stats.length?money(stats.at(-1).median):'…'}</strong><small>${stats.length?pct(stats.at(-1).median/params.initial-1)+' in this batch':'Run to see the result'}</small></div><div><span>Simulated 10–90% Range</span><strong class="sim-range">${stats.length?money(stats.at(-1).low)+' – '+money(stats.at(-1).high):'…'}</strong><small>Final prices across this batch</small></div>`;}
  async function runBatch(){
   updateParams();await new Promise(requestAnimationFrame);if(!alive)return;
-  paths=simulate(params,100,days);stats=summarize(paths);run++;draw();summary();el('sim-export').disabled=false;el('sim-status').textContent=`Run ${run} · 100 paths · ${data.custom?'252 modeled sessions':'Historical prices unchanged'}`;
+  paths=simulate(params,100,days);stats=summarize(paths);run++;revealStarted=performance.now();draw();summary();el('sim-export').disabled=false;el('sim-status').textContent=`Run ${run} · 100 paths · ${data.custom?'252 modeled sessions':'Historical prices unchanged'}`;
  }
  el('sim-method').addEventListener('change',()=>{el('lookup-status').textContent='Model changed. Click Simulate to apply it.';el('sim-export').disabled=true;});
  el('sim-actual').addEventListener('change',()=>{draw();summary();});el('sim-day').addEventListener('input',inspection);
