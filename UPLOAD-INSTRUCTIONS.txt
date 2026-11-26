@@ -1,10 +1,18 @@
-Rowan Jevan portfolio v24, November 25, 2026
+ROWAN JEVAN PORTFOLIO, VERSION 26
 
-Includes the new slogan and responsive desktop, laptop and phone layouts.
+This is the current published frontend, including tightened spacing, aligned research and simulation visuals, the Mobile field, and the message counter inside the bottom-right of the message box.
 
+UPLOAD TO GITHUB
 1. Unzip this file.
-2. Upload all extracted website files and the assets folder to the root of rowanjevan.github.io, replacing the matching files. Include the new responsive.css file.
-3. Commit the changes and wait for GitHub Pages to deploy.
-4. Refresh the website after deployment.
+2. Open rowanjevan/rowanjevan.github.io on GitHub.
+3. Choose Add file > Upload files.
+4. Upload the extracted files and assets folder directly into the repository root. Do not upload the ZIP or an extra enclosing folder.
+5. Commit the changes. Existing matching files will be replaced.
+6. Keep the current Settings > Pages configuration, main branch and root folder.
+7. After deployment finishes, refresh https://rowanjevan.github.io.
 
-Do not upload the ZIP itself or an extra enclosing folder. This is the frontend only. Your Render backend remains connected and does not need to be replaced.
+These files are the frontend. Keep the stock simulator backend on Render unchanged. Do not upload these files to the rowan-stock-simulator repository.
+
+The frontend is connected to https://rowan-stock-simulator.onrender.com/api through ticker-config.js.
+
+The current published slogan is preserved. Alternative slogans discussed in chat have not been applied.
