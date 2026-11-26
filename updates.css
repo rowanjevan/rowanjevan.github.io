@@ -1,0 +1,184 @@
+/* Refinements to Rowan's original three-column portfolio. */
+.campus-groups{display:grid;gap:14px;margin-top:12px}
+.campus-group h3{font-size:12px;font-weight:600;line-height:1.4}
+.club-list{list-style:none;padding:0;margin:5px 0 0;display:grid;gap:3px;font-size:14px;line-height:1.4}
+.education,.journey,.experience{border-top:1px solid var(--line);padding-top:14px}
+.about-page .journey-list.is-waiting>li,.about-page .education.is-waiting,.about-page .metrics.is-waiting,.about-page .experience.is-waiting{opacity:0;transform:none}
+/* Opacity-only reveals keep the layout still throughout the first-visit sequence. */
+.about-page{--about-reveal-duration:550ms;--about-reveal-ease:ease-in-out}
+.about-page.page-enter{animation:about-fade-in 400ms ease-in-out both}
+@keyframes about-fade-in{from{opacity:0}to{opacity:1}}
+.about-page .journey-list>li:nth-child(1){--story-delay:0ms}
+.about-page .journey-list>li:nth-child(2){--story-delay:180ms}
+.about-page .journey-list>li:nth-child(3){--story-delay:360ms}
+.about-page .journey-list>li:nth-child(4){--story-delay:540ms}
+.about-page .journey-list.is-revealing>li{animation-name:about-fade-in;animation-duration:var(--about-reveal-duration);animation-timing-function:var(--about-reveal-ease)}
+.education.is-revealing{animation:about-fade-in var(--about-reveal-duration) var(--about-reveal-ease) 800ms both}
+.education.is-revealing .campus-life{animation:about-fade-in var(--about-reveal-duration) var(--about-reveal-ease) 1080ms both}
+.metrics.is-revealing{animation:about-fade-in var(--about-reveal-duration) var(--about-reveal-ease) 1360ms both}
+.experience.is-revealing{animation:about-fade-in var(--about-reveal-duration) var(--about-reveal-ease) 1580ms both}
+@media(prefers-reduced-motion:reduce){.about-page .journey-list.is-waiting>li,.about-page .journey-list.is-revealing>li,.about-page .education.is-waiting,.about-page .education.is-revealing,.about-page .education.is-revealing .campus-life,.about-page .metrics.is-waiting,.about-page .metrics.is-revealing,.about-page .experience.is-waiting,.about-page .experience.is-revealing{opacity:1;transform:none;animation:none}}
+.experience-label{border-bottom:0;margin-top:0;padding-bottom:0;align-items:center}
+.education>.section-label,.journey>.section-label,.experience>.section-label{min-height:32px;align-items:center}
+.research-context p{line-height:1.4}
+.research-details{display:flex;flex-direction:column;align-self:stretch;min-width:0}
+.research-takeaways{border-top:1px solid var(--line);display:grid;gap:0}
+.research-takeaways>div{display:flex;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);min-width:0}
+.research-takeaways dt{flex:0 0 85px;font-size:12px;font-weight:600;color:var(--muted)}
+.research-takeaways dd{font-size:14px;line-height:1.4}
+.research-caveat{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.4}
+.research-details>.project-methods{margin-top:12px}
+.paper-download{align-self:flex-end;margin-top:auto;padding-top:16px;font-size:13px}
+.sim-service-note{font-size:12px;color:var(--muted);line-height:1.4;margin-top:7px}
+.project-head{border-top:0;padding-top:0}
+.project-head>.section-label{border-bottom:1px solid var(--ink);padding-bottom:20px}
+.contact-page{align-items:stretch}
+.contact-column,.connect-column{min-width:0}
+.connect-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px;align-content:start;padding-top:32px}
+.connect-form>.name-field,.connect-form>.school-field,.connect-form>.message-field,.connect-form>.form-footer{grid-column:1/-1}
+.connect-form>label{min-width:0}
+.connect-form .message-box textarea{height:140px;resize:none}
+.contact-links{display:grid;grid-template-rows:repeat(3,1fr)}
+.contact-link{min-width:0;align-items:center}
+
+@media(min-width:1000px) and (min-height:600px){
+ .about-page{grid-template-columns:minmax(0,1fr) max-content calc(40% - 19.2 * var(--u));grid-template-areas:'intro intro metrics' 'journey education experience' 'outside outside experience';column-gap:calc(24 * var(--u))}
+ .education,.journey,.experience{margin:0;padding-top:calc(9 * var(--u));align-self:start}
+ .education>.section-label,.journey>.section-label,.experience>.section-label{height:calc(30 * var(--u));min-height:0;margin:0;padding:0;align-items:center}
+ .education>h2{margin-top:calc(13 * var(--u));font-size:calc(24 * var(--u));white-space:nowrap}
+ .degree>span{font-size:calc(12 * var(--u));line-height:1.4}
+ .degree strong{font-size:calc(12 * var(--u));line-height:1.4;white-space:nowrap}
+ .campus-groups{gap:calc(10 * var(--u));margin-top:calc(9 * var(--u))}
+ .campus-group h3{font-size:calc(11 * var(--u))}
+ .club-list{gap:calc(3 * var(--u));margin-top:calc(4 * var(--u));font-size:calc(12 * var(--u))}
+ .club-list li{white-space:nowrap}
+ .journey-list{margin-top:calc(13 * var(--u));gap:calc(8 * var(--u))}
+ .journey-body h3{font-size:calc(20 * var(--u))}
+ .journey-body p{font-size:calc(12 * var(--u));line-height:1.4}
+ .experience-row{padding:calc(12 * var(--u)) 0}
+ .experience-row:last-child{border-bottom:0}
+ .company-logo{max-width:calc(160 * var(--u))}
+ .company-logo.dotmatics{max-width:calc(140 * var(--u))}
+ .wakefield-brand{font-size:calc(15 * var(--u));gap:calc(5 * var(--u))}
+ .wakefield-profile{width:calc(28 * var(--u));height:calc(28 * var(--u))}
+ .dates{font-size:calc(9 * var(--u))}
+ .metrics span{font-size:calc(9 * var(--u))}
+ .project-columns>article{align-items:stretch}
+ .projects-page{gap:calc(6 * var(--u))}
+ .project-head,.project-toolbar{align-self:start}
+ .project-head>.section-label{padding-bottom:calc(8 * var(--u))}
+ .research-context{padding-top:calc(2 * var(--u));font-size:calc(13 * var(--u))}
+ .research-context strong{font-size:calc(11 * var(--u));font-weight:600}
+ .research-context p{margin-top:calc(7 * var(--u))}
+ .research-takeaways>div{gap:calc(10 * var(--u));padding:calc(9 * var(--u)) 0}
+ .research-takeaways dt{flex-basis:calc(73 * var(--u));font-size:calc(10 * var(--u))}
+ .research-takeaways dd{font-size:calc(12 * var(--u));white-space:nowrap;line-height:1.4}
+ .research-caveat{font-size:calc(10 * var(--u));margin-top:calc(8 * var(--u))}
+ .research-details>.project-methods,.sim-result-area>.project-methods{margin-top:calc(10 * var(--u));font-size:calc(12 * var(--u));grid-template-columns:calc(64 * var(--u)) minmax(0,1fr);gap:calc(10 * var(--u));line-height:1.45}
+ .paper-download{margin-top:auto;padding-top:calc(15 * var(--u));font-size:calc(12 * var(--u))}
+ .sim-service-note{font-size:calc(10 * var(--u));margin-top:calc(5 * var(--u));max-width:100%}
+ .shared-toolkit dl{grid-template-columns:1fr 1.4fr 1.2fr}
+ .contact-page{width:100%;max-width:calc(1100 * var(--u));justify-self:center;align-self:center;padding:calc(12 * var(--u)) 0;gap:calc(80 * var(--u));grid-template-columns:1fr 1fr;align-items:stretch}
+ .contact-column,.connect-column{display:flex;flex-direction:column;min-height:0}
+ .contact-page h1,.contact-page h2{margin:calc(10 * var(--u)) 0 calc(20 * var(--u));font-size:calc(46 * var(--u))}
+ .contact-links{flex:1;display:grid;grid-template-rows:repeat(3,minmax(0,1fr));border-bottom:1px solid var(--line)}
+ .contact-link{padding:calc(16 * var(--u)) 0;align-items:center}
+ .contact-copy strong{font-size:calc(22 * var(--u))}
+ .connect-form{flex:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(12 * var(--u)) calc(20 * var(--u));padding-top:calc(20 * var(--u))}
+ .connect-form label{font-size:calc(12 * var(--u))}
+ .connect-form input{font-size:calc(14 * var(--u));padding:calc(6 * var(--u)) 0}
+ .message-field{display:block!important;min-height:0}
+ .connect-form .message-box textarea{height:calc(115 * var(--u));min-height:0;font-size:calc(14 * var(--u));padding:calc(10 * var(--u)) calc(12 * var(--u)) calc(28 * var(--u))}
+ .connect-button{font-size:calc(14 * var(--u));padding:calc(10 * var(--u)) calc(30 * var(--u))}
+ .form-footer{margin-top:calc(2 * var(--u))}
+}
+@media(max-width:999px){
+ .personal-column{display:flex;flex-direction:column}
+ .personal-column>.journey{margin:24px 0 0}
+ .personal-column>.education{margin:24px 0 0}
+ .club-list li{white-space:normal}
+ .research-takeaways>div{align-items:start}
+ .research-takeaways dd{white-space:normal}
+ .research-details>.project-methods{font-size:14px}
+ .paper-download{margin-top:18px;padding-top:0}
+ .contact-links{display:flex;border-bottom:0}
+ .connect-form{display:grid}
+}
+@media(max-width:380px){.connect-form{column-gap:14px}.research-takeaways>div{display:block}.research-takeaways dt{margin-bottom:5px}}
+
+/* Keep a balanced upper edge and a more generous lower edge. */
+:root{--page-edge:38px}
+body[data-page="about"] .site-shell,body[data-page="projects"] .site-shell{padding-bottom:clamp(40px,5dvh,64px)}
+.masthead{padding-top:var(--page-edge)}
+@media(min-width:1000px) and (min-height:600px){
+ :root{--page-edge:calc(14 * var(--u))}
+ body[data-page="about"] .site-shell,body[data-page="projects"] .site-shell{height:100dvh}
+ body[data-page="about"] main,body[data-page="projects"] main{min-height:0;align-items:stretch;grid-template-rows:minmax(0,1fr)}
+ .about-page{grid-template-rows:auto 1fr auto;align-content:stretch}
+ .journey,.experience{align-self:stretch}
+ .journey{display:flex;flex-direction:column}
+ .journey-list{flex:1;align-content:space-between}
+ .experience{justify-content:flex-start}
+ .experience-row{flex:1}
+ .outside{min-height:0;margin:0;align-self:end}
+ .projects-page{align-self:stretch;min-height:0}
+ .project-columns{flex:1;min-height:0;grid-template-rows:auto auto minmax(calc(200 * var(--u)),1fr) auto}
+ .research-visuals,.sim-visual{grid-template-rows:calc(16 * var(--u)) minmax(0,1fr) auto;align-self:stretch}
+ .sim-chart{height:100%;min-height:0}
+}
+@media(min-width:1000px) and (min-height:600px) and (max-height:699px){
+ body[data-page="about"] .site-shell,body[data-page="projects"] .site-shell{height:auto}
+ body[data-page="about"] main,body[data-page="projects"] main{min-height:auto;grid-template-rows:auto}
+ .projects-page{min-height:auto}
+ .project-columns{flex:none;grid-template-rows:auto auto calc(210 * var(--u)) auto}
+}
+
+/* Put the takeaway beside the model controls, instead of leaving a vacant track. */
+.research-context{gap:16px}
+.research-context p{margin-top:6px}
+.long-slogan{text-wrap:balance}
+.long-slogan>span{display:block;text-wrap:balance}
+.positioning>span{white-space:nowrap}
+.research-highlight{border-left:2px solid #000;padding-left:12px}
+.research-details>.project-methods{margin-top:16px}
+@media(min-width:1000px) and (min-height:600px){
+ .research-context{align-self:stretch;justify-content:space-between;gap:calc(12 * var(--u));padding:calc(2 * var(--u)) 0 calc(7 * var(--u))}
+ .research-context p{margin-top:calc(5 * var(--u));font-size:calc(13 * var(--u));line-height:1.45}
+ .research-highlight{padding-left:calc(10 * var(--u))}
+ .research-details>.project-methods{margin-top:calc(14 * var(--u))}
+ .paper-download{padding-top:calc(12 * var(--u));padding-bottom:calc(4 * var(--u))}
+ .shared-toolkit{padding-top:calc(12 * var(--u))}
+ .projects-page{gap:calc(12 * var(--u))}
+}
+@media(max-width:999px){
+ .contact-links{flex-direction:column}
+ .contact-link{width:100%;flex:none}
+ .contact-copy{min-width:0}
+ .project-head>.section-label{padding-bottom:12px}
+ .research-context{margin:18px 0 22px}
+ .research-highlight{padding:3px 0 3px 12px}
+ .research-details{gap:12px}
+ .research-details>.project-methods{margin-top:4px}
+ .paper-download{margin-top:6px}
+}
+
+/* A calmer lower edge on the two content-heavy pages. */
+@media(min-width:1000px) and (min-height:600px){
+ body[data-page="about"] .site-shell,body[data-page="projects"] .site-shell{padding-bottom:clamp(22px,3dvh,48px)}
+}
+
+/* Give the story full reading width on phones, with dates above each place. */
+@media(max-width:600px){
+ .about-page .journey-list>li{display:flex;flex-direction:column;gap:8px;padding-bottom:24px}
+ .about-page .journey-list>li:last-child{padding-bottom:0}
+ .about-page .journey-meta{display:flex;flex-direction:row;justify-content:space-between;gap:16px;padding:0}
+ .about-page .journey-body{padding-left:16px}
+}
+
+/* Consistent action-led contributions across all three internships. */
+.experience-row li strong{font-weight:600}
+
+/* Let Experience share the lower edge with Countries Explored. */
+@media(min-width:1000px) and (min-height:600px){
+ .about-page .experience-row:last-child{flex:0 0 auto;padding-bottom:0}
+}

@@ -1,0 +1,84 @@
+/* Matching horizontal bands make the two studies easier to scan together. */
+.research-help-row{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+.research-help-row .research-control-hint{flex:1;padding:0}
+.research-help-row .research-explain{flex:none;padding:0;font-size:12px;line-height:1.5}
+.research-interpretation>p{font-size:14px;line-height:1.5;margin-top:7px}
+@media(min-width:1000px) and (min-height:600px){
+ .project-head .project-question{font-size:calc(13 * var(--u))}
+ .research-help-row,.sim-help-row{gap:calc(12 * var(--u));padding:calc(2 * var(--u)) 0 calc(3 * var(--u))}
+ .research-help-row .research-explain,.sim-help-row .sim-explain{font-size:calc(10 * var(--u));line-height:1.5}
+ .project-columns{grid-template-rows:auto auto minmax(calc(200 * var(--u)),1fr) auto auto auto auto}
+ .project-columns>article{grid-row:span 7}
+ .project-details{grid-row:4 / span 4;display:grid;grid-template-rows:subgrid;row-gap:inherit;align-items:start}
+ .research-insight{display:grid;grid-row:1 / span 2;grid-template-rows:subgrid;row-gap:inherit}
+ .research-interpretation,.simulation-project .sim-inspector{grid-row:1}
+ .research-interpretation>p{font-size:calc(12 * var(--u));line-height:1.4;margin-top:calc(5 * var(--u))}
+ .research-estimates,.simulation-project .sim-summary{grid-row:2;margin:0;padding-top:calc(9 * var(--u));padding-bottom:calc(2 * var(--u));align-self:stretch}
+ .research-estimates dt,.simulation-project .sim-summary span{font-size:calc(11 * var(--u));line-height:1.4}
+ .research-estimates dd{font-size:calc(24 * var(--u));line-height:1.2;letter-spacing:-.035em;margin:calc(4 * var(--u)) 0 calc(3 * var(--u))}
+ .research-estimates small,.simulation-project .sim-summary small{font-size:calc(10 * var(--u));line-height:1.4;margin:0}
+ .simulation-project .sim-summary small{margin-top:calc(3 * var(--u))}
+ .sim-result-area>.sim-comparison{grid-row:3}
+ .research-footer,.sim-result-area>.sim-footer{grid-row:4;margin:0;padding-top:calc(5 * var(--u));align-self:end}
+ .research-footer a,.sim-footer button{font-size:calc(12 * var(--u));line-height:1.35;padding:calc(5 * var(--u)) 0 calc(4 * var(--u))}
+}
+@media(min-width:1000px) and (min-height:600px) and (max-height:800px), (min-width:1000px) and (min-height:700px) and (min-aspect-ratio:8/5){
+ .project-columns{grid-template-rows:auto auto minmax(calc(155 * var(--u)),1fr) auto auto auto auto}
+}
+@media(max-width:600px){
+ .research-help-row{align-items:start}
+ .research-help-row .research-explain{min-height:28px}
+}
+/* Keep the shared toolkit compact when the screen is wide relative to its height. */
+@media(min-width:1000px) and (min-height:600px) and (max-height:800px), (min-width:1000px) and (min-height:700px) and (min-aspect-ratio:8/5){
+ .shared-toolkit{display:grid;grid-template-columns:calc(154 * var(--u)) minmax(0,1fr);gap:calc(16 * var(--u));align-items:start}
+ .shared-toolkit h2{font-size:calc(17 * var(--u));margin:0;line-height:1.4}
+ .shared-toolkit dl{grid-template-columns:.9fr 1.4fr 1.2fr;gap:calc(20 * var(--u))}
+ .research-footer,.sim-result-area>.sim-footer{padding-top:0}
+}
+
+/* Tools follow the work: prepare data, analyze it, visualize it, build for the web. */
+.shared-toolkit .toolkit-groups{grid-template-columns:1fr 1fr 1fr 1.65fr;gap:0}
+.toolkit-groups>div{min-width:0;padding:0 20px}
+.toolkit-groups>div:first-child{padding-left:0}
+.toolkit-groups>div:last-child{padding-right:0}
+.toolkit-groups>div+div{border-left:1px solid var(--line)}
+.shared-toolkit .toolkit-groups dt{font-weight:600;color:#000}
+.shared-toolkit .toolkit-groups dd{color:#444;text-wrap:pretty}
+@media(min-width:1000px) and (min-height:600px){
+ .shared-toolkit .toolkit-groups>div{padding:0 calc(18 * var(--u))}
+ .shared-toolkit .toolkit-groups>div:first-child{padding-left:0}
+ .shared-toolkit .toolkit-groups>div:last-child{padding-right:0}
+ .shared-toolkit .toolkit-groups dt{font-size:calc(12 * var(--u));margin-bottom:calc(5 * var(--u));line-height:1.4}
+ .shared-toolkit .toolkit-groups dd{font-size:calc(12 * var(--u));line-height:1.5}
+}
+@media(min-width:620px) and (max-width:999px){
+ .shared-toolkit .toolkit-groups{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 0}
+ .shared-toolkit .toolkit-groups>div{padding:0 22px}
+ .shared-toolkit .toolkit-groups>div:nth-child(odd){padding-left:0;border-left:0}
+ .shared-toolkit .toolkit-groups>div:nth-child(even){padding-right:0}
+}
+@media(max-width:619px){
+ .shared-toolkit h2{font-size:24px;margin-bottom:6px}
+ .shared-toolkit .toolkit-groups{display:block}
+ .shared-toolkit .toolkit-groups>div{padding:18px 0;border-left:0}
+ .shared-toolkit .toolkit-groups>div+div{border-top:1px solid var(--line)}
+ .shared-toolkit .toolkit-groups>div:last-child{padding-bottom:0}
+ .shared-toolkit .toolkit-groups dt{font-size:16px;margin-bottom:6px;line-height:1.4}
+ .shared-toolkit .toolkit-groups dd{font-size:15px;line-height:1.65}
+}
+
+/* Give each dropdown the same visible inset at the text and chevron edges. */
+.research-input-row select,.simulation-project .unified-controls select{
+ --select-inset:10px;--select-arrow:12px;
+ appearance:none;-webkit-appearance:none;
+ padding-left:var(--select-inset);
+ padding-right:calc(2 * var(--select-inset) + var(--select-arrow));
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+ background-repeat:no-repeat;
+ background-position:right var(--select-inset) center;
+ background-size:var(--select-arrow) auto;
+}
+@media(min-width:1000px) and (min-height:600px){
+ .research-input-row select,.simulation-project .unified-controls select{--select-inset:calc(8 * var(--u));--select-arrow:calc(12 * var(--u))}
+}

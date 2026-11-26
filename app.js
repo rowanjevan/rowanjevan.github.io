@@ -1,65 +1,101 @@
 'use strict';
 const roles=[
- {company:'Minerva Valuations',logo:'minerva.png',cls:'minerva',title:'Business Valuations & M&A Analyst Intern',city:'Los Angeles, CA',dates:'Jun 2026–Aug 2026',background:'Boutique, cross-border valuation & M&A advisory',achievements:['Ownership & financial datasets for client valuations','Lender-market maps, competitor benchmarks & sell-side materials'],focus:['Business Valuation','Market Research','Sell-Side Advisory','Financial Analysis']},
- {company:'Dotmatics',logo:'dotmatics.svg',cls:'dotmatics',title:'M&A Analyst Intern',city:'Los Angeles, CA',dates:'Jun 2025–Apr 2026',background:'Life sciences software · Acquired by Siemens in July 2025',achievements:['Software target screening through ARR, EBITDA & strategic fit','Founder diligence, acquisition briefs & AI market mapping'],focus:['Software M&A','Due Diligence','Target Screening','Market Mapping']},
- {company:'Wakefield Legacy Capital',logo:'wakefield-linkedin.png',cls:'wakefield',title:'Private Equity Analyst Intern',city:'Boston, MA',dates:'Aug 2024–May 2025',background:'Entrepreneur-led search fund · Long-term business ownership',achievements:['Revenue-quality review & partner-level investment write-ups','Fragmented-market research & proprietary owner outreach'],focus:['Deal Sourcing','Industry Research','Financial Review','Investment Research']}
+ {
+  company:'Minerva Valuations',logo:'minerva.png',cls:'minerva',
+  title:'Business Valuations & M&A Analyst Intern',city:'Los Angeles, CA',dates:'Jun 2026–Aug 2026',
+  background:'Boutique Advisory Firm · Business Valuation & Sell-Side M&A',
+  achievements:[
+   {lead:'Built valuation datasets',detail:'from company financials and ownership research'},
+   {lead:'Benchmarked lenders and competitors',detail:'for client materials'}
+  ],
+  focus:['Business Valuation','Sell-Side Advisory','Financial Research','Market Research']
+ },
+ {
+  company:'Dotmatics',logo:'dotmatics.svg',cls:'dotmatics',
+  title:'M&A Analyst Intern',city:'Los Angeles, CA',dates:'Jun 2025–Apr 2026',
+  background:'Life Sciences Software Company · Acquired by Siemens in July 2025',
+  achievements:[
+   {lead:'Screened software targets',detail:'for strategic fit using ARR growth and EBITDA'},
+   {lead:'Mapped laboratory markets',detail:'to identify growth opportunities for an AI product'}
+  ],
+  focus:['Software M&A','Target Screening','Financial Analysis','Due Diligence']
+ },
+ {
+  company:'Wakefield Legacy Capital',logo:'wakefield-linkedin.png',cls:'wakefield',
+  title:'Private Equity Analyst Intern',city:'Boston, MA',dates:'Aug 2024–May 2025',
+  background:'Private Equity Search Fund · Service-Business Acquisitions',
+  achievements:[
+   {lead:'Ranked markets',detail:'by fragmentation and acquisition potential'},
+   {lead:'Analyzed revenue quality and margins',detail:'for partner-level investment briefs'}
+  ],
+  focus:['Deal Sourcing','Market Research','Financial Analysis','Due Diligence']
+ }
 ];
 function companyBrand(r){
  if(r.cls==='wakefield')return `<span class="wakefield-brand"><img src="assets/wakefield-linkedin.png" alt="" class="wakefield-profile"><span>Wakefield Legacy Capital</span></span>`;
  return `<img class="company-logo ${r.cls}" src="assets/${r.logo}" alt="${r.company}">`;
 }
-function journey(){return `<section class="journey" aria-labelledby="journey-title"><div class="section-label"><h2 id="journey-title">Places That Shaped My Perspective</h2></div><ol class="journey-list">
- <li><div class="journey-meta"><span>2008</span><span>Birth</span></div><div class="journey-body"><h3>Shanghai</h3><h4>Lujiazui (陆家嘴)</h4><p>My story began in Shanghai during the 2008 crisis, in a city that was regaining momentum by mid-2009.</p></div></li>
- <li><div class="journey-meta"><span>Jul 2023</span><span>Age 15</span></div><div class="journey-body"><h3>New York</h3><h4>Columbia University</h4><p>My interest in computer science took shape here, exploring how data and machine learning solve real-world problems.</p></div></li>
- <li><div class="journey-meta"><span>Jun–Aug 2024</span><span>Age 16</span></div><div class="journey-body"><h3>Cambridge</h3><h4>Harvard University</h4><p>Followed that curiosity deeper into computer science, building my foundation in data structures and discrete math.</p></div></li>
- <li><div class="journey-meta"><span>2024–2026</span><span>Ages 16–18</span></div><div class="journey-body"><h3>Los Angeles</h3><h4>Wakefield → Dotmatics → Minerva</h4><p>Stepped into finance through three internships, researching businesses and evaluating acquisition opportunities.</p></div></li>
+function journey(){return `<section class="journey" aria-labelledby="journey-title"><div class="section-label"><h2 id="journey-title">Path</h2></div><ol class="journey-list">
+ <li><div class="journey-meta"><span>2008</span><span>Birth</span></div><div class="journey-body"><h3>Shanghai</h3><h4>Lujiazui (陆家嘴)</h4><p>My story began the year a global financial crisis forced the world to rethink risk and rebuild trust.</p></div></li>
+ <li><div class="journey-meta"><span>Jul 2023</span><span>Age 15</span></div><div class="journey-body"><h3>New York City</h3><h4>Columbia University · Summer Program</h4><p>I explored AI’s impact and used data to study how product features relate to pricing. The project gave me a way to test my own questions.</p></div></li>
+ <li><div class="journey-meta"><span>Jun–Aug 2024</span><span>Age 16</span></div><div class="journey-body"><h3>Cambridge</h3><h4>Harvard University · Summer Courses</h4><p>That curiosity led me deeper into Python and algorithms. I began to understand how the tools behind the analysis are built.</p></div></li>
+ <li><div class="journey-meta"><span>2024–2026</span><span>Ages 16–18</span></div><div class="journey-body"><h3>Los Angeles</h3><h4>Wakefield → Dotmatics → Minerva</h4><p>Three internships took me from deal sourcing to M&A and valuation. Now I want to learn how experienced investors turn research into decisions.</p></div></li>
  </ol></section>`;}
 function about(){return `<div class="about-page page-enter">
  <div class="personal-column">
-  <section class="personal-intro"><h1 class="long-slogan">Give me a market.<br><span>I’ll help you make sense of it.</span></h1><p class="positioning">Sell-Side Advisory · Software M&A · Private Equity Fund</p></section>
+  <section class="personal-intro"><h1 class="long-slogan">I’ll start with a wider view.<br>Then take a closer look.</h1><p class="positioning"><span>Sell-Side Advisory</span> · <span>Software M&A</span> · <span>Private Equity Fund</span></p></section>
+  ${journey()}
   <section class="education" aria-labelledby="education-title">
    <div class="section-label"><span id="education-title">Education</span><span>Class of 2030</span></div>
    <h2>University of Southern California</h2>
-   <div class="degree"><span>Dornsife College of Letters, Arts and Sciences</span><strong>Bachelor of Science in Applied and Computational Mathematics</strong></div>
+   <div class="degree"><span>Dornsife College of Letters, Arts and Sciences</span><strong>B.S. in Applied and Computational Mathematics</strong></div>
    <div class="degree"><span>Marshall School of Business</span><strong>Minor in Business Finance</strong></div>
-   <div class="campus-life"><span class="minor-label">On Campus</span><dl class="club-groups"><div><dt>Finance & Venture</dt><dd>Trojan Investing Society · Global Investment Society · Trojan Venture Partners</dd></div><div><dt>Culture</dt><dd>Korean American Student Association · Chinese American Student Association</dd></div><div><dt>Recreation</dt><dd>Golf Club · Ski & Snowboard Club · Trojan Poker Club</dd></div></dl></div>
+   <div class="campus-life"><span class="minor-label">On Campus</span><div class="campus-groups">
+    <section class="campus-group" aria-labelledby="clubs-finance"><h3 id="clubs-finance">Finance & Investing</h3><ul class="club-list"><li>Global Investment Society</li><li>Trojan Investing Society</li><li>Trojan Venture Partners</li></ul></section>
+    <section class="campus-group" aria-labelledby="clubs-cultural"><h3 id="clubs-cultural">Cultural</h3><ul class="club-list"><li>Chinese American Student Association</li><li>Korean American Student Association</li></ul></section>
+    <section class="campus-group" aria-labelledby="clubs-recreation"><h3 id="clubs-recreation">Recreation</h3><ul class="club-list"><li>Golf Club</li><li>Ski & Snowboard Club</li><li>Trojan Poker Club</li></ul></section>
+   </div></div>
   </section>
-  ${journey()}
   <div class="outside"><span class="minor-label">Countries Explored</span><p class="travel">China · South Korea · Japan · Spain · Portugal · United Kingdom</p></div>
  </div>
  <div class="experience-column">
-  <section class="metrics" aria-label="Experience in Numbers"><div><strong data-count="20" data-prefix="$" data-suffix="M+" aria-label="$20 million plus">$20M+</strong><span>Acquisition Targets Evaluated</span></div><div><strong data-count="5000" data-suffix="+" aria-label="5,000 plus">5,000+</strong><span>Firms Reviewed</span></div><div><strong data-count="8" aria-label="8">8</strong><span>Industry Markets Researched</span></div></section>
+  <section class="metrics" aria-label="Experience in Numbers"><div><strong data-count="20" data-prefix="$" data-suffix="M+" aria-label="$20 million plus">$20M+</strong><span>Target Deal Size</span></div><div><strong data-count="5000" data-suffix="+" aria-label="5,000 plus">5,000+</strong><span>Companies Researched</span></div><div><strong data-count="8" aria-label="8">8</strong><span>Industry Markets Researched</span></div></section>
   <section class="experience" aria-labelledby="experience-title"><div class="section-label experience-label"><h2 id="experience-title">Experience</h2><a class="resume-link" href="Resume_RowanJevan.pdf" download="Resume_RowanJevan.pdf">Download Resume</a></div>
-  ${roles.map(r=>`<article class="experience-row"><div class="company-line"><h3>${companyBrand(r)}</h3><span class="dates"><span>${r.city}</span><span>${r.dates}</span></span></div><p class="company-background">${r.background}</p><h4>${r.title}</h4><div class="focus-tags">${r.focus.map(f=>`<span>${f}</span>`).join('')}</div><ul>${r.achievements.map(a=>`<li>${a}</li>`).join('')}</ul></article>`).join('')}
+  ${roles.map(r=>`<article class="experience-row"><div class="company-line"><h3>${companyBrand(r)}</h3><span class="dates"><span>${r.city}</span><span>${r.dates}</span></span></div><p class="company-background">${r.background}</p><h4>${r.title}</h4><div class="focus-tags">${r.focus.map(f=>`<span>${f}</span>`).join('')}</div><ul>${r.achievements.map(a=>`<li><strong>${a.lead}</strong> ${a.detail}</li>`).join('')}</ul></article>`).join('')}
   </section>
  </div>
 </div>`;}
-function researchChart(){
- const points=Array.from({length:31},(_,i)=>({x:46+i*7.6,y:125-i*2.65+Math.sin(i*9)*20}));
- return `<figure class="research-chart"><div class="chart-heading">Market & Acquirer Returns</div><svg viewBox="0 0 320 180" role="img" aria-labelledby="research-chart-title research-chart-desc"><title id="research-chart-title">Illustrative scatterplot with a trend line</title><desc id="research-chart-desc">Thirty-one illustrative dots scattered around an upward-sloping trend line. This graphic evokes regression analysis; the points and line are not actual observations or a fitted result from the research paper.</desc><text x="16" y="14" class="chart-axis-label">Acquirer returns</text><g class="research-grid">${[40,88,136,184,232,280].map(x=>`<path d="M${x} 28V142"/>`).join('')}${[28,56,84,112,142].map(y=>`<path d="M40 ${y}H280"/>`).join('')}</g><path d="M40 28V142H280" class="research-zero"/><path class="research-fit" d="M46 125L274 45.5" pathLength="100"/><g class="research-points">${points.map((p,i)=>`<circle cx="${p.x.toFixed(2)}" cy="${p.y.toFixed(2)}" r="3.2" style="--point-delay:${i*12}ms"/>`).join('')}</g><text x="160" y="169" text-anchor="middle" class="chart-axis-label">Market returns</text></svg><figcaption>Illustrative scatterplot, not the study’s actual observations.</figcaption></figure>`;
-}
 function projectPage(){return `<div class="projects-page page-enter"><div class="page-heading"><h1>Projects</h1></div><div class="project-columns">
- <article class="research-project" aria-labelledby="research-title"><header class="project-head"><div class="section-label">Empirical Research</div><h2 id="research-title">M&A & Stock Returns</h2><p class="project-question">Market conditions vs. deal characteristics<span class="question-extra">US acquisitions above $1 billion</span></p></header>
- <div class="research-context project-toolbar"><strong>Approach</strong><p>Historical prices, market returns and Treasury yields aligned with deal dates.</p></div>
- <div class="research-visuals project-visual"><div class="fit-heading">Model Fit</div><figure class="research-figure"><div class="fit-number">33.9<span>%</span></div><div class="fit-track"><span></span></div><figcaption>Variation in sample returns explained by the model<span>R² = 0.339 · Multiple linear regression</span></figcaption></figure>${researchChart()}</div>
- <div class="project-details research-details"><dl class="research-findings"><div><dt>Finding</dt><dd>Market conditions more closely associated with returns than deal size or sector.</dd></div><div><dt>Scope</dt><dd>Announcement-to-completion returns; associations, not causation.</dd></div><div><dt>Methods</dt><dd>Data cleaning · Date alignment · Multiple linear regression · Statistical analysis · Data visualization</dd></div></dl><a class="text-link" href="ResearchPaper.pdf" target="_blank" rel="noopener">Full Research Paper</a></div>
- </article>
- <article class="simulation-project" aria-labelledby="simulation-title"><header class="project-head"><div class="section-label">Interactive Model</div><h2 id="simulation-title">Stock Price Simulation</h2><p class="project-question">100 paths · Geometric Brownian motion<span class="question-extra">One-year historical comparison</span></p></header>${StockSim.markup()}</article>
- </div><section class="shared-toolkit" aria-labelledby="toolkit-title"><h2 id="toolkit-title">Skills & Toolkit</h2><dl><div><dt>Languages</dt><dd>Python · TypeScript · JavaScript · HTML · CSS</dd></div><div><dt>Libraries & Frameworks</dt><dd>NumPy · pandas · yfinance · statsmodels · Matplotlib · Plotly · React · Tailwind CSS</dd></div><div><dt>Tools & Formats</dt><dd>Microsoft Excel · Vite · SVG · JSON · CSV · Timedelta</dd></div></dl></section></div>`;}
+ <article class="research-project" aria-labelledby="research-title">${ResearchStudy.markup()}</article>
+ <article class="simulation-project" aria-labelledby="simulation-title"><header class="project-head"><div class="section-label">Interactive Model</div><h2 id="simulation-title">Stock Price Simulation</h2><p class="project-question">100 possible paths. How did reality compare?</p></header>${StockSim.markup()}</article>
+ </div><section class="shared-toolkit" aria-labelledby="toolkit-title"><h2 id="toolkit-title">Technical Toolkit</h2><dl class="toolkit-groups"><div><dt>Data Preparation</dt><dd>Python · NumPy · pandas · yfinance</dd></div><div><dt>Statistical Analysis</dt><dd>Microsoft Excel · statsmodels</dd></div><div><dt>Data Visualization</dt><dd>Matplotlib · Plotly · SVG</dd></div><div><dt>Web Development</dt><dd>HTML · CSS · JavaScript · TypeScript · React · Tailwind CSS · Vite</dd></div></dl></section></div>`;}
 const icons={email:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 6 9 7 9-7"/></svg>',linkedin:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.75H4.98V9.2h2.95ZM6.46 7.9a1.71 1.71 0 1 1 0-3.42 1.71 1.71 0 0 1 0 3.42Zm12.29 10.85H15.8V14.1c0-1.1-.02-2.52-1.54-2.52-1.54 0-1.78 1.2-1.78 2.44v4.73H9.53V9.2h2.83v1.3h.04c.4-.76 1.36-1.56 2.8-1.56 3 0 3.55 1.97 3.55 4.53Z"/></svg>',github:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .8a11.3 11.3 0 0 0-3.57 22.02c.56.1.77-.24.77-.54v-2.1c-3.14.68-3.8-1.33-3.8-1.33-.51-1.3-1.26-1.65-1.26-1.65-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.02 1.74 2.66 1.24 3.31.95.1-.74.4-1.25.72-1.54-2.5-.28-5.14-1.26-5.14-5.58 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.99 0 0 .95-.3 3.1 1.16a10.8 10.8 0 0 1 5.64 0c2.15-1.46 3.1-1.16 3.1-1.16.61 1.56.23 2.71.11 2.99.72.79 1.16 1.8 1.16 3.03 0 4.33-2.64 5.3-5.15 5.57.4.35.76 1.04.76 2.1v3.1c0 .3.2.65.78.54A11.3 11.3 0 0 0 12 .8Z"/></svg>'};
-function contact(){const c=[['Email','email','rowanjevan@gmail.com','mailto:rowanjevan@gmail.com'],['LinkedIn','linkedin','in/rowanjevan','https://www.linkedin.com/in/rowanjevan'],['GitHub','github','rowanjevan','https://github.com/rowanjevan']];return `<div class="contact-page page-enter"><section class="contact-column"><div class="section-label">Say Hello</div><h1>Contact</h1><div class="contact-links">${c.map(([label,icon,text,url])=>`<a href="${url}"${icon!=='email'?' target="_blank" rel="noopener"':''} class="contact-link"><span class="contact-icon" aria-hidden="true">${icons[icon]}</span><span class="contact-copy"><span>${label}</span><strong>${text}</strong></span></a>`).join('')}</div></section><section class="connect-column"><div class="section-label">Start a Conversation</div><h2>Connect</h2><form class="connect-form" action="https://formsubmit.co/rowanjevan@gmail.com" method="POST"><input type="hidden" name="_subject" value="New connection from Rowan Jevan’s portfolio"><input type="hidden" name="_template" value="table"><input class="honeypot" name="_honey" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"><label>Name<input name="name" autocomplete="name" required maxlength="100"></label><label>Email<input type="email" name="email" autocomplete="email" required maxlength="254"></label><label>Mobile<input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="30"></label><label>School / Company<input name="school_or_company" autocomplete="organization" required maxlength="150"></label><label class="message-field" for="contact-message"><span class="message-heading">Message</span><span class="message-box"><textarea id="contact-message" name="message" rows="5" required minlength="10" maxlength="1000" aria-describedby="message-limit"></textarea><span id="message-limit"><span id="message-count">0</span> / 1,000</span></span></label><div class="form-footer"><button class="connect-button" type="submit">Connect</button></div></form></section></div>`;}
+function contact(){const c=[['Email','email','rowanjevan@gmail.com','mailto:rowanjevan@gmail.com'],['LinkedIn','linkedin','in/rowanjevan','https://www.linkedin.com/in/rowanjevan'],['GitHub','github','rowanjevan','https://github.com/rowanjevan']];return `<div class="contact-page page-enter"><section class="contact-column"><div class="section-label">Say Hello</div><h1>Contact</h1><div class="contact-links">${c.map(([label,icon,text,url])=>`<a href="${url}"${icon!=='email'?' target="_blank" rel="noopener"':''} class="contact-link"><span class="contact-icon" aria-hidden="true">${icons[icon]}</span><span class="contact-copy"><span>${label}</span><strong>${text}</strong></span></a>`).join('')}</div></section><section class="connect-column"><div class="section-label">Start a Conversation</div><h2>Connect</h2><form class="connect-form" action="https://formsubmit.co/rowanjevan@gmail.com" method="POST"><input type="hidden" name="_subject" value="New connection from Rowan Jevan’s portfolio"><input type="hidden" name="_template" value="table"><input class="honeypot" name="_honey" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="name-field">Name<input name="name" autocomplete="name" maxlength="100"></label><label>Email<input type="email" name="email" autocomplete="email" maxlength="254"></label><label>Mobile<input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="30"></label><label class="school-field">School / Company<input name="school_or_company" autocomplete="organization" maxlength="150"></label><label class="message-field" for="contact-message"><span class="message-heading" id="contact-message-label">Message</span><span class="message-box"><textarea id="contact-message" name="message" rows="5" maxlength="300" aria-labelledby="contact-message-label" aria-describedby="message-limit"></textarea><span id="message-limit"><span id="message-count">0</span> / 300</span></span></label><div class="form-footer"><button class="connect-button" type="submit">Connect</button></div></form></section></div>`;}
 let countFrame=0,journeyObserver;
+let aboutHasLoaded=false;
 function animateJourney(){
+ if(aboutHasLoaded){
+  document.querySelector('.about-page')?.classList.remove('page-enter');
+  return;
+ }
+ aboutHasLoaded=true;
  const list=document.querySelector('.journey-list');
+ const education=document.querySelector('.education');
+ const metrics=document.querySelector('.metrics');
+ const experience=document.querySelector('.experience');
  if(!list||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
- list.classList.add('is-waiting');
+ if(!('IntersectionObserver' in window)){animateCounts();return;}
+ const sections=[list,education,metrics,experience].filter(Boolean);
+ sections.forEach(section=>section.classList.add('is-waiting'));
+ metrics?.addEventListener('animationstart',animateCounts,{once:true});
  journeyObserver=new IntersectionObserver(entries=>{
   if(entries.some(entry=>entry.isIntersecting)){
-   list.classList.remove('is-waiting');list.classList.add('is-revealing');journeyObserver.disconnect();
+   sections.forEach(section=>{section.classList.remove('is-waiting');section.classList.add('is-revealing');});
+   journeyObserver.disconnect();
   }
  },{threshold:.1});
  journeyObserver.observe(list.firstElementChild);
 }
-function animateCounts(){cancelAnimationFrame(countFrame);const nodes=[...document.querySelectorAll('[data-count]')];if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const start=performance.now();const tick=now=>{const progress=Math.min(1,(now-start)/1100),ease=1-(1-progress)**3;for(const node of nodes){if(!node.isConnected)return;const n=Math.round(Number(node.dataset.count)*ease);node.textContent=(node.dataset.prefix||'')+n.toLocaleString('en-US')+(node.dataset.suffix||'');}if(progress<1)countFrame=requestAnimationFrame(tick);};countFrame=requestAnimationFrame(tick);}
-function render(){journeyObserver?.disconnect();cancelAnimationFrame(countFrame);StockSim.dispose();const raw=location.hash.slice(1);const route=raw==='projects'||raw.startsWith('project/')?'projects':raw==='contact'?'contact':'about';document.getElementById('main').innerHTML=({about,projects:projectPage,contact}[route])();document.body.dataset.page=route;document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===route)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});document.title='Rowan Jevan | USC';window.scrollTo(0,0);if(route==='projects')StockSim.mount();if(route==='about'){animateCounts();animateJourney();}if(route==='contact'){const message=document.getElementById('contact-message');message.addEventListener('input',()=>{document.getElementById('message-count').textContent=message.value.length.toLocaleString('en-US');});}}
+function animateCounts(){cancelAnimationFrame(countFrame);const nodes=[...document.querySelectorAll('[data-count]')];if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const start=performance.now();const tick=now=>{const progress=Math.max(0,Math.min(1,(now-start)/850)),ease=1-(1-progress)**3;for(const node of nodes){if(!node.isConnected)return;const n=Math.round(Number(node.dataset.count)*ease);node.textContent=(node.dataset.prefix||'')+n.toLocaleString('en-US')+(node.dataset.suffix||'');}if(progress<1)countFrame=requestAnimationFrame(tick);};countFrame=requestAnimationFrame(tick);}
+function render(){journeyObserver?.disconnect();cancelAnimationFrame(countFrame);StockSim.dispose();ResearchStudy.dispose();const raw=location.hash.slice(1);const route=raw==='projects'||raw.startsWith('project/')?'projects':raw==='contact'?'contact':'about';document.getElementById('main').innerHTML=({about,projects:projectPage,contact}[route])();document.body.dataset.page=route;document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===route)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});document.title='Rowan Jevan | USC';window.scrollTo(0,0);if(route==='projects'){StockSim.mount();ResearchStudy.mount();}if(route==='about')animateJourney();if(route==='contact'){const message=document.getElementById('contact-message');message.addEventListener('input',()=>{if(message.value.length>message.maxLength)message.value=message.value.slice(0,message.maxLength);document.getElementById('message-count').textContent=message.value.length.toLocaleString('en-US');});}}
 window.addEventListener('hashchange',render);render();

@@ -1,0 +1,29 @@
+/* One spacing scale for both columns and every stage of the contact form. */
+.contact-page{
+ --contact-unit:1px;
+ --contact-gap:calc(20 * var(--contact-unit));
+ --contact-label-gap:calc(8 * var(--contact-unit));
+}
+.contact-page h1,.contact-page h2{margin:calc(12 * var(--contact-unit)) 0 var(--contact-gap)}
+.contact-page .contact-link{gap:var(--contact-gap);padding:var(--contact-gap) 0}
+.contact-page .contact-copy>span{margin-bottom:var(--contact-label-gap)}
+.contact-page .connect-form{
+ padding-top:var(--contact-gap);
+ row-gap:var(--contact-gap);
+ column-gap:var(--contact-gap);
+}
+.contact-page .connect-form>label:not(.message-field){display:flex;flex-direction:column;gap:var(--contact-label-gap)}
+.contact-page .connect-form input{margin-top:0;padding:var(--contact-label-gap) 0;min-height:48px}
+.contact-page .message-box{margin-top:var(--contact-label-gap)}
+.contact-page .connect-form .message-box textarea{margin:0;padding:calc(12 * var(--contact-unit)) calc(12 * var(--contact-unit)) calc(32 * var(--contact-unit))}
+.contact-page .form-footer{margin-top:0;gap:var(--contact-gap)}
+.contact-page .connect-button{padding:calc(12 * var(--contact-unit)) calc(32 * var(--contact-unit))}
+@media(min-width:1000px) and (min-height:600px){
+ .contact-page{--contact-unit:var(--u);column-gap:calc(80 * var(--contact-unit))}
+ .contact-page .connect-form input{height:calc(36 * var(--contact-unit));min-height:0}
+ .contact-page .contact-copy>span,.contact-page .connect-form label{font-size:calc(12 * var(--contact-unit));line-height:1.4}
+}
+@media(max-width:999px){
+ .contact-page{row-gap:calc(2 * var(--contact-gap))}
+ .contact-page .connect-form label,.contact-page .contact-copy>span{font-size:14px;line-height:1.4}
+}
