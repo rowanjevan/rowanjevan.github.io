@@ -98,9 +98,23 @@ function animateJourney(){
  journeyObserver.observe(list.firstElementChild);
 }
 function animateCounts(){cancelAnimationFrame(countFrame);const nodes=[...document.querySelectorAll('[data-count]')];if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const start=performance.now();const tick=now=>{const progress=Math.max(0,Math.min(1,(now-start)/850)),ease=1-(1-progress)**3;for(const node of nodes){if(!node.isConnected)return;const n=Math.round(Number(node.dataset.count)*ease);node.textContent=(node.dataset.prefix||'')+n.toLocaleString('en-US')+(node.dataset.suffix||'');}if(progress<1)countFrame=requestAnimationFrame(tick);};countFrame=requestAnimationFrame(tick);}
-function render(){journeyObserver?.disconnect();cancelAnimationFrame(countFrame);StockSim.dispose();ResearchStudy.dispose();const raw=location.hash.slice(1);const route=raw==='projects'||raw.startsWith('project/')?'projects':raw==='contact'?'contact':'about';document.getElementById('main').innerHTML=({about,projects:projectPage,contact}[route])();document.body.dataset.page=route;document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===route)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});document.title='Rowan Jevan | USC';window.scrollTo(0,0);if(route==='projects'){StockSim.mount();ResearchStudy.mount();}if(route==='about')animateJourney();if(route==='contact'){const message=document.getElementById('contact-message');message.addEventListener('input',()=>{if(message.value.length>message.maxLength)message.value=message.value.slice(0,message.maxLength);document.getElementById('message-count').textContent=message.value.length.toLocaleString('en-US');});}}
-// Hash links stay on the clean landing path even though assets use a base URL.
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
- a.href=location.pathname+location.search+a.getAttribute('href');
+function render(){journeyObserver?.disconnect();cancelAnimationFrame(countFrame);StockSim.dispose();ResearchStudy.dispose();const route=PortfolioNavigation.read();document.getElementById('main').innerHTML=({about,projects:projectPage,contact}[route])();document.body.dataset.page=route;document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===route)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});document.title='Rowan Jevan | USC';window.scrollTo(0,0);if(route==='projects'){StockSim.mount();ResearchStudy.mount();}if(route==='about')animateJourney();if(route==='contact'){const message=document.getElementById('contact-message');message.addEventListener('input',()=>{if(message.value.length>message.maxLength)message.value=message.value.slice(0,message.maxLength);document.getElementById('message-count').textContent=message.value.length.toLocaleString('en-US');});}}
+// Switch tabs without a reload, preserving the first-visit animation state.
+document.querySelectorAll('[data-nav]').forEach(link=>{
+ link.href=PortfolioNavigation.href(link.dataset.nav);
+ link.addEventListener('click',event=>{
+  if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+  event.preventDefault();
+  const target=PortfolioNavigation.href(link.dataset.nav);
+  if(location.pathname+location.search===target&&!location.hash)return;
+  history.pushState(null,'',target);
+  render();
+ });
 });
-window.addEventListener('hashchange',render);render();
+document.querySelector('.skip').addEventListener('click',event=>{
+ event.preventDefault();
+ document.getElementById('main').focus();
+});
+window.addEventListener('popstate',render);
+window.addEventListener('hashchange',()=>{PortfolioNavigation.normalize();render();});
+render();
