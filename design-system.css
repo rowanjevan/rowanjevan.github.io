@@ -494,7 +494,7 @@ a:hover{text-decoration:underline}
 .section-label,.minor-label{color:var(--navy)}
 .about-page .education>.section-label,
 .about-page .journey>.section-label,
-.about-page .experience>.section-label{font-size:clamp(20px,1.5vw,22px)}
+.about-page .experience>.section-label{font-size:var(--font-label)}
 .about-page .education>.section-label>span:last-child{color:var(--navy)}
 .about-page .focus-tags span{background:var(--white);border-color:var(--line);color:var(--muted)}
 .about-page .experience-row li::marker{color:var(--text)}
@@ -516,17 +516,9 @@ button:disabled,.simulation-project .unified-controls button:disabled,.sim-foote
  .masthead{position:sticky;top:0;z-index:50;background:var(--white)}
  .masthead::before{content:"";position:absolute;inset:0 calc(-1 * var(--mobile-gutter));background:var(--white);z-index:-1}
  .site-shell{--mobile-gutter:24px}
- .about-page .education>.section-label,
- .about-page .journey>.section-label,
- .about-page .experience>.section-label{font-size:18px}
  .about-page .focus-tags{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
  .about-page .focus-tags span{min-width:0;display:flex;align-items:center;justify-content:center;text-align:center}
  .company-description-part{display:block}
  .company-description-separator{display:none}
 }
 @media(max-width:600px){.site-shell{--mobile-gutter:20px}}
-@media(max-width:360px){
- .about-page .education>.section-label,
- .about-page .journey>.section-label,
- .about-page .experience>.section-label{font-size:16px}
-}
