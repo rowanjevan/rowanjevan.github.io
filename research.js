@@ -10,12 +10,15 @@ const factors=[
  {id:'deal-size',summary:'Deal size showed no clear relationship in this sample.',label:'Deal Size',direction:'No Clear Link',position:1,coefficient:'Not Stated',pValue:'High',pDetail:'Exact Value Not Stated',title:'A bigger deal did not show a clear return advantage.',explanation:'Among the US deals over $1 billion studied, transaction value did not show a clear relationship with acquirer returns. That does not establish that size never matters.'},
  {id:'sector',summary:'Sector showed no clear relationship in this sample.',label:'Sector',direction:'No Clear Link',position:1,coefficient:'Not Stated',pValue:'High',pDetail:'Exact Value Not Stated',title:'Industry alone did not explain a clear pattern.',explanation:'The sector variable did not show a clear relationship with acquirer returns in this sample. Industry can still matter in ways this model did not capture.'}
 ];
+// Invisible alternatives reserve each text region's natural responsive height.
+// They stay out of the accessibility tree and never duplicate interactive controls.
+function sizedText(id,values){return `<span class="research-sized-text"><span id="${id}">${values[0]}</span>${[...new Set(values)].map(value=>`<span class="research-size-copy" aria-hidden="true">${value}</span>`).join('')}</span>`;}
 function markup(){return `<header class="project-head"><div class="section-label">Empirical Research</div><h2 id="research-title">M&A and Stock Returns</h2><p class="project-question">What moves a buyer’s stock during a deal?</p></header>
  <div class="research-controls project-toolbar">
   <div class="research-input-row"><label for="research-factor">Explore a Factor<select id="research-factor">${factors.map(f=>`<option value="${f.id}">${f.label}</option>`).join('')}</select></label></div>
   <div class="research-help-row"><p class="research-control-hint">Choose a factor, or select a row in the chart.</p><button class="research-explain" id="research-explain" type="button">How I Studied It</button></div>
-  <div class="research-selection"><strong id="research-active">Market Return</strong><span id="research-direction">Positive Association</span></div>
-  <p id="research-takeaway" class="research-thesis">${factors[0].summary}</p>
+  <div class="research-selection"><strong>${sizedText('research-active',factors.map(f=>f.label))}</strong><span id="research-direction">${sizedText('research-direction-value',factors.map(f=>f.position===1?'No Clear Link':f.direction+' Association'))}</span></div>
+  <p class="research-thesis">${sizedText('research-takeaway',factors.map(f=>f.summary))}</p>
  </div>
  <div class="research-evidence project-visual">
   <div class="research-fit-heading">Model Fit</div><div class="research-chart-heading">Relationship to Stock Returns</div>
@@ -27,7 +30,7 @@ function markup(){return `<header class="project-head"><div class="section-label
   <p class="research-chart-caption">Reported associations, not individual deal data or proof of causation.</p>
  </div>
  <div class="research-reading project-details">
-  <div id="research-insight" class="research-insight" aria-live="polite" aria-atomic="true"><div class="research-interpretation"><h3 id="research-insight-title">${factors[0].title}</h3><p id="research-insight-copy">${factors[0].explanation}</p></div><dl class="research-estimates"><div><dt>Reported Coefficient</dt><dd id="research-coefficient">1.077</dd><small>Units Differ Across Factors</small></div><div><dt>Reported p-Value</dt><dd id="research-p-value">Very Small</dd><small id="research-p-detail">Exact Value Not Stated</small></div></dl></div>
+  <div id="research-insight" class="research-insight" aria-live="polite" aria-atomic="true"><div class="research-interpretation"><h3>${sizedText('research-insight-title',factors.map(f=>f.title))}</h3><p>${sizedText('research-insight-copy',factors.map(f=>f.explanation))}</p></div><dl class="research-estimates"><div><dt>Reported Coefficient</dt><dd>${sizedText('research-coefficient',factors.map(f=>f.coefficient))}</dd><small>Units Differ Across Factors</small></div><div><dt>Reported p-Value</dt><dd>${sizedText('research-p-value',factors.map(f=>f.pValue))}</dd><small>${sizedText('research-p-detail',factors.map(f=>f.pDetail))}</small></div></dl></div>
   <div class="research-footer"><p>US Acquisitions &gt;$1B · Announcement to Close</p><a href="ResearchPaper.pdf" download="RowanJevan_MA_Research.pdf">Download Research Paper <span aria-hidden="true">↓</span></a></div>
  </div>
  <dialog id="research-explanation" class="research-explanation sim-explanation" aria-labelledby="research-explanation-title"><div class="sim-dialog-heading"><h2 id="research-explanation-title">The Market Around the Deal</h2><button id="research-explanation-close" type="button" aria-label="Close Research Explanation">×</button></div>
@@ -44,15 +47,20 @@ function dispose(){cleanup();cleanup=()=>{};}
 function mount(){
  dispose();const select=document.getElementById('research-factor');if(!select)return;
  const el=id=>document.getElementById(id),rows=[...document.querySelectorAll('.research-factor-row')];let active=factors[0].id,timer;
- const fit=document.querySelector('.research-fit-number'),fitValue=fit?.firstChild;
+ const fit=document.querySelector('.research-fit-number'),fitValue=fit?.firstChild,fitBar=document.querySelector('.research-fit-track>span');
  let fitFrame=0,fitObserver,alive=true;
+ function setFit(value){
+  const percentage=value.toFixed(1);
+  fitValue.nodeValue=percentage;
+  if(fitBar)fitBar.style.width=percentage+'%';
+ }
  function countFit(){
   fitObserver?.disconnect();
   const start=performance.now();
   const tick=now=>{
    if(!alive||!fit.isConnected)return;
    const progress=Math.max(0,Math.min(1,(now-start)/1200));
-   fitValue.nodeValue=(33.9*(1-(1-progress)**3)).toFixed(1);
+   setFit(33.9*(1-(1-progress)**3));
    if(progress<1)fitFrame=requestAnimationFrame(tick);
   };
   fitFrame=requestAnimationFrame(tick);
@@ -60,7 +68,7 @@ function mount(){
  // Play once per Projects visit when visible, keeping factor changes independent.
  // The accessible label always reports the final research result.
  if(fitValue&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
-  fitValue.nodeValue='0.0';
+  setFit(0);
   if('IntersectionObserver' in root){
    fitObserver=new IntersectionObserver(entries=>{
     if(entries.some(entry=>entry.isIntersecting))countFit();
@@ -71,7 +79,7 @@ function mount(){
  function show(id){
   const f=factors.find(f=>f.id===id);if(!f||id===active)return;active=id;select.value=id;
   rows.forEach(row=>row.setAttribute('aria-pressed',String(row.dataset.factor===id)));
-  el('research-active').textContent=f.label;el('research-takeaway').textContent=f.summary;el('research-direction').textContent=f.position===1?'No Clear Link':f.direction+' Association';
+  el('research-active').textContent=f.label;el('research-takeaway').textContent=f.summary;el('research-direction-value').textContent=f.position===1?'No Clear Link':f.direction+' Association';
   el('research-insight-title').textContent=f.title;el('research-insight-copy').textContent=f.explanation;el('research-coefficient').textContent=f.coefficient;el('research-p-value').textContent=f.pValue;el('research-p-detail').textContent=f.pDetail;
   const insight=el('research-insight');insight.classList.remove('research-updated');void insight.offsetWidth;insight.classList.add('research-updated');clearTimeout(timer);timer=setTimeout(()=>insight.classList.remove('research-updated'),700);
  }

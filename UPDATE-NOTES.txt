@@ -1,5 +1,5 @@
-Rowan Jevan Website, version 85
+Rowan Jevan Website, version 87
 
-Changes: Model Fit counts from 0 to 33.9% when it comes into view. Animation respects reduced-motion preferences. The research title is M&A and Stock Returns.
+Research factor selections now keep the chart, table and surrounding layout stable. Includes the synchronized Model Fit number and bar animation.
 
-Extract the ZIP and upload all contents to the portfolio repository, not the stock simulator backend repository. index.html belongs at the repository root. Existing clean tab URLs are retained.
+Extract this ZIP and upload its contents to the portfolio repository, not the stock simulator backend repository. Keep index.html at the repository root and preserve the included folders.

@@ -1,5 +1,8 @@
 /* A factor explorer grounded in the paper's reported results. */
 .research-project{--ru:1px}
+.research-sized-text{display:grid;min-width:0}
+.research-sized-text>span{grid-area:1/1;min-width:0}
+.research-size-copy{visibility:hidden;pointer-events:none;user-select:none}
 .research-controls{display:flex;flex-direction:column;gap:7px;min-width:0;align-self:stretch}
 .research-input-row{display:flex;align-items:flex-end;gap:20px}
 .research-input-row label{flex:1;min-width:0;font-size:13px;font-weight:600}
