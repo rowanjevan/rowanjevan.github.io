@@ -2,8 +2,8 @@
 const roles=[
  {
   company:'Minerva Valuations',logo:'minerva.png',cls:'minerva',
-  title:'Business Valuations & M&A Analyst Intern',city:'Los Angeles, CA',dates:'Jun 2026–Aug 2026',
-  background:'Boutique Advisory Firm · Business Valuation & Sell-Side M&A',
+  title:'Business Valuations and M&A Analyst Intern',city:'Los Angeles, CA',dates:'Jun 2026–Aug 2026',
+  background:'Boutique Advisory Firm · Business Valuation and Sell-Side M&A',
   achievements:[
    {lead:'Built valuation datasets',detail:'from company financials and ownership research'},
    {lead:'Benchmarked lenders and competitors',detail:'for client materials'}

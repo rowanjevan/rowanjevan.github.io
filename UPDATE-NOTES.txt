@@ -1,5 +1,5 @@
-Rowan Jevan Website, version 89
+Rowan Jevan Website, version 90
 
-PATH, EDUCATION, CLASS OF 2030 and EXPERIENCE now use the same font size as Download Resume across screen sizes. All prior research animation and layout fixes are included.
+The Minerva description and job title now use and instead of &, while preserving M&A. All prior updates are included.
 
 Extract the ZIP and upload its contents to the portfolio repository, not the stock simulator backend repository. Keep index.html at the repository root and preserve the included folders.
