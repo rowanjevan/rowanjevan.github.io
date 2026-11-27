@@ -18,7 +18,8 @@
 .research-fit-card{grid-column:1;grid-row:2;background:var(--navy);color:var(--white);padding:20px;display:flex;flex-direction:column;justify-content:center;min-width:0}
 .research-fit-number{font-size:54px;line-height:1.1;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
 .research-fit-number>span{font-size:.4em;margin-left:3px}
-.research-fit-track{height:3px;background:var(--muted);margin:14px 0}.research-fit-track>span{width:33.9%;height:100%;display:block;background:var(--white)}
+/* Keep the bar visible when larger type squeezes the flex card's contents. */
+.research-fit-track{height:3px;min-height:3px;flex-shrink:0;background:var(--muted);margin:14px 0}.research-fit-track>span{width:33.9%;height:100%;display:block;background:var(--white)}
 .research-fit-card figcaption{font-size:13px;line-height:1.5}.research-fit-card figcaption>span{display:block;font-size:10px;margin-top:8px;color:var(--white)}
 .research-factor-chart{grid-column:2;grid-row:2;display:grid;grid-template-rows:auto repeat(6,minmax(0,1fr));min-width:0;min-height:0}
 .research-factor-axes,.research-factor-row{display:grid;grid-template-columns:minmax(0,1.65fr) repeat(3,minmax(0,1fr));gap:0;align-items:center;min-width:0}
