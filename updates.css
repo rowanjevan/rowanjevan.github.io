@@ -139,7 +139,7 @@ body[data-page="about"] .site-shell,body[data-page="projects"] .site-shell{paddi
 .long-slogan{text-wrap:balance}
 .long-slogan>span{display:block;text-wrap:balance}
 .positioning>span{white-space:nowrap}
-.research-highlight{border-left:2px solid #000;padding-left:12px}
+.research-highlight{border-left:2px solid var(--navy);padding-left:12px}
 .research-details>.project-methods{margin-top:16px}
 @media(min-width:1000px) and (min-height:600px){
  .research-context{align-self:stretch;justify-content:space-between;gap:calc(12 * var(--u));padding:calc(2 * var(--u)) 0 calc(7 * var(--u))}

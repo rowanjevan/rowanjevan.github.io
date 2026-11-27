@@ -1,9 +1,9 @@
 /* Shared editorial system. Layout remains in the page-specific stylesheets.
    Headings, controls, actions, chart labels and short descriptors use title case; narrative prose uses sentence case.
-   Black rules introduce major sections; gray rules separate related details. */
+   Navy rules introduce major sections; light gray rules separate related details. */
 :root{
- --ink:#000;--text:#000;--paper:#fff;--muted:#595959;
- --rule-major:#000;--rule-detail:#d2d2d2;--rule-control:#8c8c8c;--line:var(--rule-detail);
+ --ink:var(--text);--paper:var(--white);
+ --rule-major:var(--navy);--rule-detail:var(--line);--rule-control:var(--line);
  --ui-unit:1px;
  --space-1:calc(4 * var(--ui-unit));--space-2:calc(8 * var(--ui-unit));
  --space-3:calc(12 * var(--ui-unit));--space-4:calc(16 * var(--ui-unit));
@@ -200,10 +200,10 @@ h1,h2,h3,h4{line-height:var(--leading-heading)}
    Navy identifies structure; slate provides context; contributions stay black.
    Underlines remain reserved for links, with no decorative type treatments. */
 body[data-page="about"]{
- --about-navy:#172d46;
- --about-slate:#526174;
- --about-rule:#d8e0e8;
- --about-tint:#f3f6f9;
+ --about-navy:var(--navy);
+ --about-slate:var(--muted);
+ --about-rule:var(--line);
+ --about-tint:var(--white);
 }
 body[data-page="about"] .masthead{border-bottom-color:var(--about-navy)}
 body[data-page="about"] .wordmark span{color:var(--about-slate)}
@@ -240,38 +240,38 @@ body[data-page="about"] .tabs a:hover{color:var(--about-navy)}
 .about-page .education>.section-label>span:last-child{color:var(--about-slate);font-weight:500}
 .about-page .education>h2{color:var(--about-navy)}
 .about-page .degree>span{color:var(--about-slate);font-weight:400}
-.about-page .degree strong{font-weight:500;color:#000}
+.about-page .degree strong{font-weight:500;color:var(--text)}
 .about-page .campus-group h3{color:var(--about-navy)}
 .about-page .journey-body{border-left-color:var(--about-rule)}
 .about-page .journey-body:before{background:var(--about-navy)}
 .about-page .journey-body h3{color:var(--about-navy);font-weight:600}
 .about-page .journey-body h4{color:var(--about-slate);font-weight:500}
 .about-page .journey-meta{color:var(--about-slate);font-variant-numeric:tabular-nums}
-.about-page .journey-meta>span:first-child{color:var(--about-navy);font-weight:600}
-.about-page .metrics{background:var(--about-navy);color:#fff}
+.about-page .journey-meta>span:first-child{color:var(--about-slate);font-weight:600}
+.about-page .metrics{background:var(--about-navy);color:var(--white)}
 .about-page .metrics>div{position:relative;min-width:0}
 .about-page .metrics>div+div:before{
  content:"";position:absolute;left:calc(-1 * var(--space-1));top:10%;height:80%;width:1px;
- background:#ffffff30;
+ background:var(--line);
 }
-.about-page .metrics strong{color:#fff;font-weight:500}
-.about-page .metrics span{color:#e4ebf3}
+.about-page .metrics strong{color:var(--white);font-weight:500}
+.about-page .metrics span{color:var(--white)}
 .about-page .experience-row{border-color:var(--about-rule)}
 .about-page .company-background{color:var(--about-slate)}
 .about-page .experience-row h4{color:var(--about-navy);font-weight:600}
 .about-page .dates{color:var(--about-slate);font-variant-numeric:tabular-nums}
 .about-page .dates>span:first-child{color:var(--about-slate)}
 .about-page .focus-tags span{
- color:#334a61;background:var(--about-tint);border-color:#dce4ec;
+ color:var(--muted);background:var(--about-tint);border-color:var(--line);
 }
 .about-page .experience-row li::marker{color:var(--about-navy)}
-.about-page .experience-row li strong{color:#000;font-weight:600}
+.about-page .experience-row li strong{color:var(--text);font-weight:600}
 .about-page .experience-label .resume-link{
- color:var(--about-navy);background:#fff;border:1px solid #aab8c7;
+ color:var(--about-navy);background:var(--white);border:1px solid var(--line);
  transition:background-color .16s ease,color .16s ease,border-color .16s ease;
 }
 .about-page .experience-label .resume-link:hover{
- background:var(--about-navy);border-color:var(--about-navy);color:#fff;
+ background:var(--about-navy);border-color:var(--about-navy);color:var(--white);
 }
 body[data-page="about"] a:focus-visible{outline:2px solid var(--about-navy);outline-offset:4px}
 .about-page .travel{color:var(--about-slate)}
@@ -295,8 +295,8 @@ body[data-page="about"] a:focus-visible{outline:2px solid var(--about-navy);outl
 
 /* Projects uses the About palette with color tied to function and emphasis. */
 body[data-page="projects"]{
- --project-navy:#172d46;--project-slate:#526174;
- --project-rule:#d8e0e8;--project-tint:#f3f6f9;--project-selection:#e8eff6;
+ --project-navy:var(--navy);--project-slate:var(--muted);
+ --project-rule:var(--line);--project-tint:var(--white);--project-selection:var(--white);
 }
 body[data-page="projects"] .masthead{border-bottom-color:var(--project-navy)}
 body[data-page="projects"] .wordmark span{color:var(--project-slate)}
@@ -311,37 +311,37 @@ body[data-page="projects"] .tabs a:hover{color:var(--project-navy)}
 .projects-page .project-question{color:var(--project-slate)}
 .projects-page .research-input-row label,.projects-page .unified-controls label{color:var(--project-navy);font-weight:600}
 .projects-page .research-input-row select,.projects-page .unified-controls input,
-.projects-page .unified-controls select{border-color:#aab8c7;background-color:#fff}
+.projects-page .unified-controls select{border-color:var(--line);background-color:var(--white)}
 .projects-page .research-input-row select:hover,.projects-page .unified-controls input:hover,
 .projects-page .unified-controls select:hover{border-color:var(--project-slate)}
 .projects-page .unified-controls.has-changes input,
 .projects-page .unified-controls.has-changes select{border-color:var(--project-navy);background-color:var(--project-tint)}
-.projects-page .unified-controls button{background:var(--project-navy);color:#fff}
-.projects-page .unified-controls button:hover:not(:disabled){background:#254260}
+.projects-page .unified-controls button{background:var(--project-navy);color:var(--white)}
+.projects-page .unified-controls button:hover:not(:disabled){background:var(--navy)}
 .projects-page .research-control-hint,.projects-page .sim-model-help,
 .projects-page .sim-chart-caption,.projects-page .research-chart-caption,
 .projects-page .research-thesis,.projects-page .sim-service-note,
 .projects-page #sim-period,.projects-page #sim-result-model,.projects-page #sim-date-hint{color:var(--project-slate)}
 .projects-page .research-help-row .research-explain,
-.projects-page .sim-help-row .sim-explain{color:var(--project-navy);border-color:#aab8c7}
+.projects-page .sim-help-row .sim-explain{color:var(--project-navy);border-color:var(--line)}
 .projects-page .research-help-row .research-explain:hover,
 .projects-page .sim-help-row .sim-explain:hover{border-color:var(--project-navy)}
 .projects-page .research-selection,.projects-page .sim-run-context{border-color:var(--project-rule)}
 .projects-page .research-selection strong,.projects-page #sim-result-ticker{color:var(--project-navy)}
 .projects-page #research-direction,.projects-page .sim-run-badge{
- background:var(--project-selection);color:var(--project-navy);border:1px solid #c3d0de;font-weight:500;
+ background:var(--project-selection);color:var(--project-navy);border:1px solid var(--line);font-weight:500;
 }
 .projects-page .sim-feedback{color:var(--project-slate)}
 .projects-page .sim-feedback[data-state="pending"],
 .projects-page .sim-feedback[data-state="loading"]{color:var(--project-navy);border-left-color:var(--project-navy)}
-.projects-page .sim-feedback[data-state="error"]{color:#762b2b;border-left-color:#762b2b;background:#fbf4f4}
+.projects-page .sim-feedback[data-state="error"]{color:var(--muted);border-left-color:var(--muted);background:var(--white)}
 .projects-page .research-fit-heading,.projects-page .research-chart-heading{color:var(--project-navy);font-weight:600}
 .projects-page .research-fit-card{background:var(--project-navy)}
-.projects-page .research-fit-number{color:#fff;font-weight:500}
-.projects-page .research-fit-card figcaption{color:#fff}
-.projects-page .research-fit-card figcaption>span{color:#e4ebf3}
-.projects-page .research-fit-track{background:#ffffff30}
-.projects-page .research-fit-track>span{background:#fff}
+.projects-page .research-fit-number{color:var(--white);font-weight:500}
+.projects-page .research-fit-card figcaption{color:var(--white)}
+.projects-page .research-fit-card figcaption>span{color:var(--white)}
+.projects-page .research-fit-track{background:var(--muted)}
+.projects-page .research-fit-track>span{background:var(--white)}
 .projects-page .research-factor-axes{color:var(--project-slate)}
 .projects-page .research-factor-row,.projects-page .research-dot-cell{border-color:var(--project-rule)}
 /* Table text and markers share the same horizontal and vertical centers. */
@@ -356,7 +356,7 @@ body[data-page="projects"] .tabs a:hover{color:var(--project-navy)}
 }
 .projects-page .research-dot-cell{min-height:0}
 .projects-page .research-dot{flex-shrink:0}
-.projects-page .research-dot{border-color:#71869b;background:#fff}
+.projects-page .research-dot{border-color:var(--muted);background:var(--white)}
 .projects-page .research-factor-row:hover{background:var(--project-tint)}
 .projects-page .research-factor-row[aria-pressed="true"]{
  background:var(--project-selection);color:var(--project-navy);font-weight:600;
@@ -368,11 +368,11 @@ body[data-page="projects"] .tabs a:hover{color:var(--project-navy)}
 .projects-page .simulation-project .sim-legend{color:var(--project-slate)}
 .projects-page .simulation-project .sim-toggle{color:var(--project-navy);font-weight:600}
 .projects-page .sim-toggle input{accent-color:var(--project-navy)}
-.projects-page .swatch.paths{background:#627b93;opacity:.65}
-.projects-page .swatch.median{border-top-color:#495765}
+.projects-page .swatch.paths{background:var(--line);opacity:1}
+.projects-page .swatch.median{border-top-color:var(--muted)}
 .projects-page .swatch.actual{background:var(--project-navy)}
-.projects-page .sim-path{stroke:#627b93;opacity:.28}
-.projects-page .sim-median-line{stroke:#495765}
+.projects-page .sim-path{stroke:var(--line);opacity:1}
+.projects-page .sim-median-line{stroke:var(--muted)}
 .projects-page .sim-actual-line{stroke:var(--project-navy)}
 .projects-page .sim-actual-end{fill:var(--project-navy)}
 .projects-page .sim-chart .sim-grid path{stroke:var(--project-rule)}
@@ -395,7 +395,7 @@ body[data-page="projects"] .tabs a:hover{color:var(--project-navy)}
 }
 .projects-page .research-footer p{color:var(--project-slate)}
 .projects-page .research-footer a,.projects-page .sim-footer button{
- color:var(--project-navy);border-bottom-color:#aab8c7;font-weight:500;
+ color:var(--project-navy);border-bottom-color:var(--line);font-weight:500;
 }
 .projects-page .research-footer a:hover,.projects-page .sim-footer button:hover:not(:disabled){border-bottom-color:var(--project-navy)}
 .projects-page .shared-toolkit .toolkit-groups dt{color:var(--project-navy)}
@@ -404,13 +404,13 @@ body[data-page="projects"] .tabs a:hover{color:var(--project-navy)}
 .projects-page .sim-explanation{border-color:var(--project-navy)}
 .projects-page .sim-dialog-heading h2,.projects-page .sim-explanation h3,
 .projects-page .sim-explanation dt,.projects-page .sim-dialog-heading button{color:var(--project-navy)}
-.projects-page .sim-explanation::backdrop{background:rgba(23,45,70,.45)}
+.projects-page .sim-explanation::backdrop{background:var(--line)}
 .projects-page .sim-data-details,.projects-page .sim-dialog-note{color:var(--project-slate)}
 body[data-page="projects"] :is(a,button,input,select):focus-visible{outline:2px solid var(--project-navy);outline-offset:3px}
 .projects-page .research-factor-row:focus-visible{outline-offset:-2px}
 .projects-page .research-updated{animation-name:project-research-refresh}
 .projects-page .sim-result-updated>div:nth-child(n+2){animation-name:project-research-refresh}
-@keyframes project-research-refresh{from{background:#e8eff6}to{background:transparent}}
+@keyframes project-research-refresh{from{background:var(--white)}to{background:transparent}}
 
 /* One spacing source per mobile project, with a larger break between studies. */
 @media(max-width:999px){
@@ -428,8 +428,8 @@ body[data-page="projects"] :is(a,button,input,select):focus-visible{outline:2px 
 
 /* Contact: the same institutional palette, with clear and usable form states. */
 body[data-page="contact"]{
- --contact-navy:#172d46;--contact-slate:#526174;
- --contact-rule:#d8e0e8;--contact-control:#7e8da0;
+ --contact-navy:var(--navy);--contact-slate:var(--muted);
+ --contact-rule:var(--line);--contact-control:var(--line);
 }
 body[data-page="contact"] .masthead{border-bottom-color:var(--contact-navy)}
 body[data-page="contact"] .wordmark span{color:var(--contact-slate)}
@@ -450,7 +450,7 @@ body[data-page="contact"] .tabs a:hover{color:var(--contact-navy)}
 .contact-page .connect-form label{color:var(--contact-navy);font-weight:600}
 .contact-page .connect-form input,
 .contact-page .connect-form .message-box textarea{
- color:#000;background:#fff;border-color:var(--contact-control);font-weight:400;
+ color:var(--text);background:var(--white);border-color:var(--contact-control);font-weight:400;
 }
 .contact-page .connect-form input:hover,
 .contact-page .connect-form .message-box textarea:hover{border-color:var(--contact-slate)}
@@ -460,14 +460,14 @@ body[data-page="contact"] .tabs a:hover{color:var(--contact-navy)}
  height:clamp(140px,calc(136 * var(--ui-unit)),210px);resize:none;
 }
 .contact-page #message-limit{
- color:var(--contact-slate);font-variant-numeric:tabular-nums;background:#fff;
+ color:var(--contact-slate);font-variant-numeric:tabular-nums;background:var(--white);
 }
 .contact-page .connect-button{
- min-height:44px;min-width:112px;background:var(--contact-navy);color:#fff;
+ min-height:44px;min-width:112px;background:var(--contact-navy);color:var(--white);
  font-size:var(--font-body);font-weight:500;
  transition:background-color .16s ease;
 }
-.contact-page .connect-button:hover{background:#254260}
+.contact-page .connect-button:hover{background:var(--navy)}
 body[data-page="contact"] :is(a,button,input,textarea):focus-visible{
  outline:2px solid var(--contact-navy);outline-offset:4px;
 }
@@ -480,4 +480,53 @@ body[data-page="contact"] :is(a,button,input,textarea):focus-visible{
 
 @media(max-width:360px){
  .contact-page .contact-copy strong{font-size:18px}
+}
+
+/* v82: shared five-color palette and the requested phone refinements. */
+html,body,.site-shell,.masthead,main,.about-page,.projects-page,.contact-page{background-color:var(--white)}
+body{color:var(--text)}
+.wordmark,h1,h2,h3,h4{color:var(--navy)}
+a{color:var(--navy)}
+a:hover{text-decoration:underline}
+.tabs a{color:var(--muted)}
+.tabs a[aria-current="page"]{color:var(--navy);border-bottom-color:var(--navy)}
+.masthead{border-bottom-color:var(--navy)}
+.section-label,.minor-label{color:var(--navy)}
+.about-page .education>.section-label,
+.about-page .journey>.section-label,
+.about-page .experience>.section-label{font-size:clamp(20px,1.5vw,22px)}
+.about-page .education>.section-label>span:last-child{color:var(--navy)}
+.about-page .focus-tags span{background:var(--white);border-color:var(--line);color:var(--muted)}
+.about-page .experience-row li::marker{color:var(--text)}
+.about-page .metrics span,.projects-page .research-fit-card figcaption>span{color:var(--white)}
+.projects-page .research-input-row label,.projects-page .unified-controls label,
+.contact-page .connect-form label{color:var(--muted)}
+.projects-page .sim-feedback[data-state="error"]{color:var(--text);border-left-color:var(--navy);background:var(--white)}
+.projects-page .unified-controls button:hover:not(:disabled),.contact-page .connect-button:hover{background:var(--navy)}
+button:disabled,.simulation-project .unified-controls button:disabled,.sim-footer button:disabled{opacity:1}
+.sim-footer button:disabled{color:var(--muted);border-color:var(--line)}
+/* Frame the original logo at its exact visible text bounds without redrawing it.
+   Original PNG: 296 x 53. Crop: x=5, y=8, width=280, height=38. */
+.minerva-logo-frame{display:block;position:relative;overflow:hidden;width:235px;max-width:100%;aspect-ratio:280 / 38;background:var(--white)}
+.minerva-logo-frame .company-logo.minerva{position:absolute;width:105.714285714%;max-width:none;height:auto;left:-1.785714286%;top:-21.052631579%;object-fit:fill}
+@media(min-width:1000px) and (min-height:600px){
+ .minerva-logo-frame{width:calc(200 * var(--u))}
+}
+@media(max-width:768px){
+ .masthead{position:sticky;top:0;z-index:50;background:var(--white)}
+ .masthead::before{content:"";position:absolute;inset:0 calc(-1 * var(--mobile-gutter));background:var(--white);z-index:-1}
+ .site-shell{--mobile-gutter:24px}
+ .about-page .education>.section-label,
+ .about-page .journey>.section-label,
+ .about-page .experience>.section-label{font-size:18px}
+ .about-page .focus-tags{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .about-page .focus-tags span{min-width:0;display:flex;align-items:center;justify-content:center;text-align:center}
+ .company-description-part{display:block}
+ .company-description-separator{display:none}
+}
+@media(max-width:600px){.site-shell{--mobile-gutter:20px}}
+@media(max-width:360px){
+ .about-page .education>.section-label,
+ .about-page .journey>.section-label,
+ .about-page .experience>.section-label{font-size:16px}
 }

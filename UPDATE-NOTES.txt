@@ -1,0 +1,18 @@
+ROWAN JEVAN WEBSITE, VERSION 83
+
+Extract this ZIP and upload its contents to your portfolio GitHub repository.
+Keep the PersonalSite folder, entry.js, index.html and app.js together with all
+other assets. No backend changes are required.
+
+First opening shows About at /PersonalSite, without #about.
+Clicking a navigation tab adds #about, #projects or #contact.
+Direct tab links, refreshes and Back/Forward navigation continue to work.
+A site hosted inside another GitHub repository retains that repository prefix.
+A repository already named PersonalSite will not get a duplicate PersonalSite.
+
+Only navigation and static entry files changed from version 82:
+- index.html
+- app.js
+- entry.js (new)
+- PersonalSite/index.html (new)
+All design, content, images, data and backend configuration remain unchanged.

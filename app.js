@@ -32,6 +32,7 @@ const roles=[
  }
 ];
 function companyBrand(r){
+ if(r.cls==='minerva')return `<span class="minerva-logo-frame"><img class="company-logo minerva" src="assets/${r.logo}" alt="${r.company}"></span>`;
  if(r.cls==='wakefield')return `<span class="wakefield-brand"><img src="assets/wakefield-linkedin.png" alt="" class="wakefield-profile"><span>Wakefield Legacy Capital</span></span>`;
  return `<img class="company-logo ${r.cls}" src="assets/${r.logo}" alt="${r.company}">`;
 }
@@ -61,7 +62,7 @@ function about(){return `<div class="about-page page-enter">
  <div class="experience-column">
   <section class="metrics" aria-label="Experience in Numbers"><div><strong data-count="20" data-prefix="$" data-suffix="M+" aria-label="$20 million plus">$20M+</strong><span>Target Deal Size</span></div><div><strong data-count="5000" data-suffix="+" aria-label="5,000 plus">5,000+</strong><span>Companies Researched</span></div><div><strong data-count="8" aria-label="8">8</strong><span>Industry Markets Researched</span></div></section>
   <section class="experience" aria-labelledby="experience-title"><div class="section-label experience-label"><h2 id="experience-title">Experience</h2><a class="resume-link" href="Resume_RowanJevan.pdf" download="Resume_RowanJevan.pdf">Download Resume</a></div>
-  ${roles.map(r=>`<article class="experience-row"><div class="company-line"><h3>${companyBrand(r)}</h3><span class="dates"><span>${r.city}</span><span>${r.dates}</span></span></div><p class="company-background">${r.background}</p><h4>${r.title}</h4><div class="focus-tags">${r.focus.map(f=>`<span>${f}</span>`).join('')}</div><ul>${r.achievements.map(a=>`<li><strong>${a.lead}</strong> ${a.detail}</li>`).join('')}</ul></article>`).join('')}
+  ${roles.map(r=>`<article class="experience-row"><div class="company-line"><h3>${companyBrand(r)}</h3><span class="dates"><span>${r.city}</span><span>${r.dates}</span></span></div><p class="company-background">${r.background.split(' · ').map(part=>`<span class="company-description-part">${part}</span>`).join('<span class="company-description-separator"> · </span>')}</p><h4>${r.title}</h4><div class="focus-tags">${r.focus.map(f=>`<span>${f}</span>`).join('')}</div><ul>${r.achievements.map(a=>`<li><strong>${a.lead}</strong> ${a.detail}</li>`).join('')}</ul></article>`).join('')}
   </section>
  </div>
 </div>`;}
@@ -98,4 +99,8 @@ function animateJourney(){
 }
 function animateCounts(){cancelAnimationFrame(countFrame);const nodes=[...document.querySelectorAll('[data-count]')];if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const start=performance.now();const tick=now=>{const progress=Math.max(0,Math.min(1,(now-start)/850)),ease=1-(1-progress)**3;for(const node of nodes){if(!node.isConnected)return;const n=Math.round(Number(node.dataset.count)*ease);node.textContent=(node.dataset.prefix||'')+n.toLocaleString('en-US')+(node.dataset.suffix||'');}if(progress<1)countFrame=requestAnimationFrame(tick);};countFrame=requestAnimationFrame(tick);}
 function render(){journeyObserver?.disconnect();cancelAnimationFrame(countFrame);StockSim.dispose();ResearchStudy.dispose();const raw=location.hash.slice(1);const route=raw==='projects'||raw.startsWith('project/')?'projects':raw==='contact'?'contact':'about';document.getElementById('main').innerHTML=({about,projects:projectPage,contact}[route])();document.body.dataset.page=route;document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===route)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});document.title='Rowan Jevan | USC';window.scrollTo(0,0);if(route==='projects'){StockSim.mount();ResearchStudy.mount();}if(route==='about')animateJourney();if(route==='contact'){const message=document.getElementById('contact-message');message.addEventListener('input',()=>{if(message.value.length>message.maxLength)message.value=message.value.slice(0,message.maxLength);document.getElementById('message-count').textContent=message.value.length.toLocaleString('en-US');});}}
+// Hash links stay on the clean landing path even though assets use a base URL.
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+ a.href=location.pathname+location.search+a.getAttribute('href');
+});
 window.addEventListener('hashchange',render);render();

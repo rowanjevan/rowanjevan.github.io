@@ -43,8 +43,8 @@
 .toolkit-groups>div:first-child{padding-left:0}
 .toolkit-groups>div:last-child{padding-right:0}
 .toolkit-groups>div+div{border-left:1px solid var(--line)}
-.shared-toolkit .toolkit-groups dt{font-weight:600;color:#000}
-.shared-toolkit .toolkit-groups dd{color:#444;text-wrap:pretty}
+.shared-toolkit .toolkit-groups dt{font-weight:600;color:var(--text)}
+.shared-toolkit .toolkit-groups dd{color:var(--muted);text-wrap:pretty}
 @media(min-width:1000px) and (min-height:600px){
  .shared-toolkit .toolkit-groups>div{padding:0 calc(18 * var(--u))}
  .shared-toolkit .toolkit-groups>div:first-child{padding-left:0}
@@ -74,7 +74,7 @@
  appearance:none;-webkit-appearance:none;
  padding-left:var(--select-inset);
  padding-right:calc(2 * var(--select-inset) + var(--select-arrow));
- background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%230F1F3D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
  background-repeat:no-repeat;
  background-position:right var(--select-inset) center;
  background-size:var(--select-arrow) auto;
