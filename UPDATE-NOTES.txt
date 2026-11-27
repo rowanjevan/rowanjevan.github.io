@@ -1,18 +1,5 @@
-ROWAN JEVAN WEBSITE, VERSION 84
+Rowan Jevan Website, version 85
 
-Extract this ZIP, then upload its contents to your portfolio GitHub repository.
-Keep every folder, including PersonalSite, about, projects and contact. These
-static entry pages allow clean URLs to work on direct visits and refreshes.
-Do not upload this to the stock simulator backend repository.
+Changes: Model Fit counts from 0 to 33.9% when it comes into view. Animation respects reduced-motion preferences. The research title is M&A and Stock Returns.
 
-First opening: /PersonalSite (displays About).
-After clicking tabs:
-  /PersonalSite/about
-  /PersonalSite/projects
-  /PersonalSite/contact
-
-No hash is added for tab navigation. Existing shared #about, #projects,
-#contact and #project/... links automatically migrate to the clean paths.
-Back and Forward navigation are supported without full-page reloads.
-A different GitHub repository name remains as a prefix, as before.
-No design, content, colors, data or backend configuration changed from v83.
+Extract the ZIP and upload all contents to the portfolio repository, not the stock simulator backend repository. index.html belongs at the repository root. Existing clean tab URLs are retained.
